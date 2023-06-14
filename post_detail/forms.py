@@ -13,7 +13,7 @@ class CommentForm(forms.ModelForm):
 
             'body': forms.Textarea(attrs={
 
-                    'cols': 60,
+                    'cols': 80,
                     'rows': 4,
                     'placeholder': 'Leave a Comment..',
                 })

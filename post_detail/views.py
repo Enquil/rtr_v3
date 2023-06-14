@@ -2,7 +2,9 @@ from newssite.models import Post, Comment
 from django.views import View
 from .forms import CommentForm
 from django.shortcuts import (
+
     render, get_object_or_404, redirect, reverse
+
 )
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -12,7 +14,7 @@ class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
 
-        # Retrieves selected post if it has status: Published
+        # Only retrieves selected post if it has status: Published
         post = get_object_or_404(
 
             Post.objects.filter(status=1),
@@ -36,9 +38,12 @@ class PostDetail(View):
 
         return render(
 
-            request, 'post_detail/post_detail.html',
+            request,
+            'post_detail/post_detail.html',
             {
                 'post': post,
+                "comments": comments,
+                "liked": liked,
                 'comment_form': CommentForm(),
             },
         )
