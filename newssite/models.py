@@ -35,19 +35,23 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
+
         User,
         on_delete=models.CASCADE,
         related_name='posts'
+
     )
     updated_on_date = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(max_length=300, blank=True)
     content = models.TextField()
     category = models.ForeignKey(
+
         Category,
         max_length=30,
         null=True,
         blank=True,
         on_delete=models.SET_NULL
+
     )
     featured_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
@@ -67,10 +71,12 @@ class Post(models.Model):
     # Use random int and username to prevent duplicate slugs
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(
-                self.title + str(
-                    self.author) + str(
+            self.slug = (
+                slugify(
+                    self.title + str(
+                        self.author) + str(
                         random.randint(0, 9999999)))
+            )
         return super().save(*args, **kwargs)
 
 
@@ -82,9 +88,11 @@ class Comment(models.Model):
         - "Approved" field is set to True by default
     '''
     post = models.ForeignKey(
+
         Post,
         on_delete=models.CASCADE,
         related_name="comments"
+
     )
     name = models.CharField(max_length=80)
     email = models.EmailField()
@@ -92,11 +100,13 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
     parent = models.ForeignKey(
+
         'self',
         null=True,
         blank=True,
         on_delete=models.CASCADE,
         related_name='replies'
+
     )
 
     class Meta:
