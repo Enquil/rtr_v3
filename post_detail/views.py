@@ -14,11 +14,14 @@ class PostDetail(View):
 
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
+        template = 'post_detail/post_detail.html'
 
-    return render(
+        return render(
+
             request,
-            "post_detail/post_detail.html",
+            template,
             {
                 "post": post,
             },
+
         )

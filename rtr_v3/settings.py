@@ -44,12 +44,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sites',
+
+    # Allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    # Cloudinary
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+
     'django_summernote',
     'newssite',
     'post_detail'
