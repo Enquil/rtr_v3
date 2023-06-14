@@ -4,20 +4,29 @@
 {% block content %}
     <div class="container-fluid">
 
+        <!-- Post Title -->
         <div class="row">
             <div class="col-12 col-md-10 offset-md-1 text-center">
                 <h2>{{ post.title|title }}</h2>
             </div>
         </div>
 
+        <!-- Post Image Handling -->
         {% if "placeholder" not in post.featured_image.url %}
             <div class="row">
                 <div class="col-12 col-md-10 offset-md-1 text-center">
                     <img class="m-2 mx-auto d-block post-detail-img"
-                        src="{{ post.featured_image.url }}">
+                         src="{{ post.featured_image.url }}">
                 </div>
             </div>
         {% endif %}
+        
+        <!-- Post Content -->
+        <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 text-center">
+                {{ post.content|safe }}
+            </div>
+        </div>
 
     </div>
 {% endblock %}
