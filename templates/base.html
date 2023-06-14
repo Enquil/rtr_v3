@@ -56,7 +56,7 @@
         <!-- Top Nav -->
         <nav class="navbar navbar-expand-lg navbar-light">
         </nav>
-        <!-- /// Top Nav /// -->
+
 
         <!-- Message Container -->
         <div class="container-fluid message-container">
@@ -74,20 +74,26 @@
             </div>
         </div>
 
-        <!-- Page Content -->
+        <!-- Individual Template Content -->
         {% block content %}
         {% endblock content %}
 
         <!-- Footer -->
         <footer class="mt-auto w-100">
         </footer>
-        <!-- /// Footer /// -->
+
     </body>
+s
+    <!-- Message Timer -->
     <script>
         setTimeout(function () {
+
             let messages = document.getElementById('msg');
             let alert = new bootstrap.Alert(messages);
+
             alert.close();
+
         }, 4000);
     </script>
+
 </html>
