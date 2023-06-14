@@ -12,9 +12,15 @@ class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
 
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
+        # Retrieves selected post if it has status: Published
+        post = get_object_or_404(
 
+            Post.objects.filter(status=1),
+            slug=slug
+
+        )
+
+        # Retrieves top-level comment parents
         comments = post.comments.filter(
 
             approved=True,
@@ -22,12 +28,15 @@ class PostDetail(View):
 
         ).order_by("-created_on")
 
-        template = 'post_detail/post_detail.html'
+        # Sets liked to False
+        # Then sets it to True if user.id exists in Post likes
+        liked = False
+        if post.likes.filter(id=self.request.user.id).exists():
+            liked = True
 
         return render(
 
-            request,
-            template,
+            request, 'post_detail/post_detail.html',
             {
                 'post': post,
                 'comment_form': CommentForm(),
