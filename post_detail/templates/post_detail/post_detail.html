@@ -34,7 +34,7 @@
             </div>
         </div>
         
-        <!-- Comment Form -->
+        <!-- Like Button, Comment Form-->
         <div class="row">
             <div class="col-12 col-md-10 col-lg-8 col-xl-4 offset-0 offset-md-1 offset-lg-2 offset-xl-4 text-center">
                 <!-- <div class="row">
@@ -52,11 +52,31 @@
                     {% csrf_token %}
                     {{ comment_form }}
 
-                    <button class="btn btn-success">
+                    <button type="submit" class="btn btn-success">
                         Post Comment
                     </button>
 
                 </form>
+
+            </div>
+        </div>
+        
+        <!-- Comments -->
+        <div class="row">
+            <div class="col-12">
+
+                {% if comments %}
+
+                    <!-- Comment Loop -->
+                    {% for comment in comments %}
+                        {{ comment.body }}
+                    {% endfor %}
+
+                {% else %}
+
+                    No comments
+
+                {% endif %}
 
             </div>
         </div>
