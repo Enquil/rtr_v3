@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+    <head>
+
+        {% block meta %}
+
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% endblock %}
+
+            <script src="https://code.jquery.com/jquery-3.6.3.slim.js" 
+                    integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" 
+                    crossorigin="anonymous">
+            </script>
+
+        {% block corecss %}
+        
+            <link rel="preconnect" 
+                  href="https://fonts.gstatic.com"
+            >
+
+            <script src="https://kit.fontawesome.com/155195b896.js" 
+                    crossorigin="anonymous">
+            </script>
+
+            <link rel="stylesheet" 
+                  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            >
+
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" 
+                  rel="stylesheet" 
+                  integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" 
+                  crossorigin="anonymous"
+            >
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" 
+                    crossorigin="anonymous">
+            </script>
+
+            <link rel="stylesheet" 
+                  href="{% static 'css/style.css' %}"
+            >
+
+        {% endblock %}
+
+    </head>
+
+    <body class="h-100 w-100 d-flex flex-column">
+
+        <!-- Top Nav -->
+        <nav class="navbar navbar-expand-lg navbar-light">
+        </nav>
+        <!-- /// Top Nav /// -->
+
+        <!-- Message Container -->
+        <div class="container-fluid message-container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                            <h3>{{ message }}</h3>
+                            <button type="button" class="btn-close my-2" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        {% block content %}
+        {% endblock content %}
+
+        <!-- Footer -->
+        <footer class="mt-auto w-100">
+        </footer>
+        <!-- /// Footer /// -->
+    </body>
+    <script>
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 4000);
+    </script>
+</html>
