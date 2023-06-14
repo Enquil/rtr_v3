@@ -10,20 +10,27 @@
                 {% for post in post_list %}
                         <div class="card mt-5 card-border mb-2">
                             <a href="{% url 'post_detail' post.slug  %}" class="post-detail-link d-block my-5 text-dark text-decoration-none">
+
                                 <h6>{{ post.category.friendly_name }} | By: {{ post.author | safe }}
                                     <span class="post-date"> | {{ post.created_on }}</span>
                                 </h6>
+
                                 <hr class="w-75" style="margin-left: 12.5%;">
-                                <h2 class="card-title">{{ post.title }}</h2>
+                                <h2 class="card-title">
+                                    {{ post.title }}
+                                </h2>
                                 <hr class="w-75" style="margin-left: 12.5%;">
+
                                 {% if "placeholder" not in post.featured_image.url %}
                                     <img class="m-2 mx-auto d-block"
                                         style="max-width: 300px; height: auto;"
                                         src="{{ post.featured_image.url }}">
                                 {% endif %}
+
                                 {% if post.excerpt %}
                                     <p class="mt-4 mx-2">{{ post.excerpt }}</p>
                                 {% endif %}
+
                                 <h5>
                                     <span><i class="fa-regular fa-comments"></i> {{ post.comments.count }}</span> |
                                     <span><i class="fa-regular fa-thumbs-up"></i> {{ post.likes.count }}</span>
