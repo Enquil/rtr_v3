@@ -1,6 +1,6 @@
 from newssite.models import Post, Comment
 from django.views import View
-# from .forms import CommentForm
+from .forms import CommentForm
 from django.shortcuts import (
     render, get_object_or_404, redirect, reverse
 )
@@ -21,7 +21,7 @@ class PostDetail(View):
             request,
             template,
             {
-                "post": post,
+                'post': post,
+                'comment_form': CommentForm(),
             },
-
         )
