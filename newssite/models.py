@@ -34,6 +34,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
+
     author = models.ForeignKey(
 
         User,
@@ -41,9 +42,11 @@ class Post(models.Model):
         related_name='posts'
 
     )
+
     updated_on_date = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(max_length=300, blank=True)
     content = models.TextField()
+
     category = models.ForeignKey(
 
         Category,
@@ -53,6 +56,7 @@ class Post(models.Model):
         on_delete=models.SET_NULL
 
     )
+
     featured_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=1)
@@ -70,6 +74,7 @@ class Post(models.Model):
     # saves and slugifies the post after user submits the form,
     # Use random int and username to prevent duplicate slugs
     def save(self, *args, **kwargs):
+
         if not self.slug:
             self.slug = (
                 slugify(
@@ -77,6 +82,7 @@ class Post(models.Model):
                         self.author) + str(
                         random.randint(0, 9999999)))
             )
+
         return super().save(*args, **kwargs)
 
 
@@ -87,6 +93,7 @@ class Comment(models.Model):
         - Parents and children to be able to use comments as a "conversation"
         - "Approved" field is set to True by default
     '''
+
     post = models.ForeignKey(
 
         Post,
@@ -94,11 +101,13 @@ class Comment(models.Model):
         related_name="comments"
 
     )
+
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField(max_length=300)
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
+
     parent = models.ForeignKey(
 
         'self',
