@@ -6,7 +6,7 @@
 
         <!-- Post Title -->
         <div class="row">
-            <div class="col-12 col-md-10 offset-md-1 text-center">
+            <div class="col-12 text-center">
                 <h2>{{ post.title|title }}</h2>
             </div>
         </div>
@@ -14,7 +14,7 @@
         <!-- Post Image Handling -->
         {% if "placeholder" not in post.featured_image.url %}
             <div class="row">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-4 offset-md-2 offset-lg-3 offset-lg-4 text-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-4 offset-0 offset-md-1 offset-lg-2 offset-xl-4 text-center">
                     <img class="m-2 mx-auto d-block post-detail-img"
                          src="{{ post.featured_image.url }}">
                 </div>
@@ -27,6 +27,14 @@
                 {{ post.content|safe }}
             </div>
         </div>
-
+        
+        <!-- Comment Form -->
+        <div class="row">
+            <div class="col-12 col-md-10 offset-md-1 text-center">
+                <form action="" method="post">
+                    {{ comment_form }}
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}

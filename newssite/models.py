@@ -27,8 +27,8 @@ class Category(models.Model):
 class Post(models.Model):
     '''
     - Basic post class sourced from CodeInstitute django tutorial
-     with some minor modifications:
-        - extended slug to allow title to match other posts
+      with some minor modifications:
+        - extended slug that is set blank to allow title to match other posts
         - "status" is 1: "Published", as default
     '''
 
@@ -72,7 +72,7 @@ class Post(models.Model):
         return self.likes.count()
 
     # saves and slugifies the post after user submits the form,
-    # Use random int and username to prevent duplicate slugs
+    # Use random int and username to allow duplicate titles instead
     def save(self, *args, **kwargs):
 
         if not self.slug:
@@ -119,17 +119,21 @@ class Comment(models.Model):
     )
 
     class Meta:
+
         ordering = ["created_on"]
 
     @property
     def children(self):
+
         return Comment.objects.filter(parent=self).reverse()
 
     @property
     def is_parent(self):
+
         if self.parent is None:
             return True
         return False
 
     def __str__(self):
+
         return f"Comment {self.body} by {self.name}"
