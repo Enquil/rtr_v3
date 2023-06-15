@@ -21,6 +21,14 @@ textarea {
 
 /* Colors */
 
+.bg-isabelline {
+    background-color: #F5F1ED;
+}
+
 .bg-bone {
-    background-color: #dad2bc;
+    background-color: #DAD2BC;
+}
+
+.bg-paynes-gray {
+    background-color: #395C6B;
 }
