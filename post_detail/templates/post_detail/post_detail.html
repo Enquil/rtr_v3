@@ -47,14 +47,25 @@
                     </div>
                 </div> -->
 
+                <!-- Comment Form -->
                 <form action="" method="post">
 
-                    {% csrf_token %}
-                    {{ comment_form }}
+                    <!-- Text Area -->
+                    <div class="row">
+                        <div class="col-12">
+                            {% csrf_token %}
+                            {{ comment_form }}
+                        </div>
+                    </div>
 
-                    <button type="submit" class="btn btn-success">
-                        Post Comment
-                    </button>
+                    <!-- Post Comment Button -->
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success">
+                                Post Comment
+                            </button>
+                        </div>
+                    </div>
 
                 </form>
 
@@ -62,16 +73,19 @@
         </div>
         
         <!-- Comments -->
-
         <div class="row">
             {% if comments %}
                 {% for comment in comments %}   
-                    <div class="col-12">
+                    <div class="col-12 col-sm-10 offset-sm-1 
+                                col-md-8 offset-md-2 col-lg-6 
+                                offset-lg-3 col-xl-4 offset-xl-4">
                         {{ comment.body }}
                     </div>
                 {% endfor %}
             {% else %}
-                <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="col-12 col-sm-10 offset-sm-1 
+                            col-md-8 offset-md-2 col-lg-6 
+                            offset-lg-3 col-xl-4 offset-xl-4">
                     No Comments
                 </div>
             {% endif %}
