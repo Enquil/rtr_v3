@@ -1,11 +1,26 @@
+
+/* Elements css */
 textarea {
     resize: none;
     width: 500px;
     max-width: 100%;
 }
 
+
+/* Base css */
+
+
+/* PostDetail css */
+
 .post-detail-img {
     width: 500px;
     max-width: 100%;
     height: auto;
+}
+
+
+/* Colors */
+
+.bg-bone {
+    background-color: #dad2bc;
 }
