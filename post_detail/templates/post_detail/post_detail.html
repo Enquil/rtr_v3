@@ -62,23 +62,19 @@
         </div>
         
         <!-- Comments -->
+
         <div class="row">
-            <div class="col-12">
-
-                {% if comments %}
-
-                    <!-- Comment Loop -->
-                    {% for comment in comments %}
+            {% if comments %}
+                {% for comment in comments %}   
+                    <div class="col-12">
                         {{ comment.body }}
-                    {% endfor %}
-
-                {% else %}
-
-                    No comments
-
-                {% endif %}
-
-            </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                    No Comments
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
