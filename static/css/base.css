@@ -24,6 +24,13 @@ textarea {
 }
 
 
+/* Forms */
+
+#signup_form > p > label {
+    display: block;
+}
+
+
 /* Colors */
 
 .platinum {

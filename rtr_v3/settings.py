@@ -20,6 +20,7 @@ if os.path.isfile("env.py"):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+ALLAUTH_DIR = os.path.join(BASE_DIR, 'templates/allauth')
 
 
 # Quick-start development settings - unsuitable for production
@@ -45,17 +46,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sites',
 
-    # Allauth
+    # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    # Cloudinary
+    # cloudinary
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
 
+    # summernote
     'django_summernote',
+
+    # apps
     'newssite',
     'post_detail'
 
@@ -78,7 +82,7 @@ ROOT_URLCONF = 'rtr_v3.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [TEMPLATES_DIR, ALLAUTH_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,8 +115,19 @@ AUTHENTICATION_BACKENDS = [
 # Allauth Settings and Login/Logout Handling
 SITE_ID = 1  # let's django handle multiple sites from single database
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+# Login and Logout redirects to homepage
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+MESSAGE_TAGS = {
+
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+
+}
 
 WSGI_APPLICATION = 'rtr_v3.wsgi.application'
 
