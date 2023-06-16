@@ -21,14 +21,44 @@ textarea {
 
 /* Colors */
 
-.bg-isabelline {
-    background-color: #F5F1ED;
+.platinum {
+    color: #EAEAEA;
 }
 
-.bg-bone {
-    background-color: #DAD2BC;
+.bg-platinum {
+    background-color: #EAEAEA;
 }
 
-.bg-paynes-gray {
-    background-color: #395C6B;
+.battleship {
+    color: #798478;
 }
+
+.bg-battleship {
+    background-color: #798478;
+}
+
+.payne {
+    color: #4D6A6D;
+}
+
+.bg-payne {
+    background-color: #4D6A6D;
+}
+
+.purple {
+    color: #3E283E;
+}
+
+.bg-purple {
+    background-color: #3E283E;
+}
+
+.cinnabar {
+    color: #E55934;
+}
+
+.bg-cinnabar {
+    background-color: #E55934;
+}
+
+

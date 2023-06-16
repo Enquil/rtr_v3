@@ -58,7 +58,9 @@
 
             <!-- Brand -->
             <a class="navbar-brand ms-3" href="{% url 'index' %}">
-                <span class="fs-3 text-dark">R</span><h2 class="d-inline text-dark">T</h2><span class="fs-3 text-dark me-5">R</span>
+                <span class="fs-3 text-dark">R</span>
+                <h2 class="d-inline text-dark">T</h2>
+                <span class="fs-3 text-dark me-5">R</span>
             </a>
 
             <!-- Navbar toggler for smaller screens -->
@@ -85,7 +87,9 @@
                   </a>
                   <div class="dropdown-menu p-0 border-0 m-0 bg-bone" aria-labelledby="navbarDropdownMenuLink">
                     {% for category in categories %}
-                        <a class="dropdown-item bg-bone ms-2" href="#">{{ category|title }}</a>
+                        <a class="dropdown-item bg-bone ms-2" href="#">
+                          {{ category.friendly_name }}
+                        </a>
                     {% endfor %}
                   </div>
                 </li>
