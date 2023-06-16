@@ -92,12 +92,45 @@
                 <li class="nav-item active">
                   <a class="nav-link ms-2 text-light" href="#">Home</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link ms-2 text-light" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link ms-2 text-light" href="#">Pricing</a>
-                </li>
+                {% comment %}
+                  if statement handles what user sees on the navbar depending if authenticated or not
+                {% endcomment %}
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link ms-2 text-light" href="#">
+                      <i class="fa-sharp fa-solid fa-pen-nib" style="color: #ffffff;"></i>
+                      Create Post
+                    </a>
+                  </li>
+                  {% comment %}
+                    user actions dropdown menu
+                  {% endcomment %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle ms-2 text-light" href="#" 
+                       id="userDropDown" data-bs-toggle="dropdown" 
+                       aria-haspopup="true" aria-expanded="false">
+                      <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+                      {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu p-0 border-0 m-0 bg-purple" aria-labelledby="userDropDown">
+                      <a class="dropdown-item bg-purple text-light" href="#">
+                        My Profile
+                      </a>
+                      <a class="dropdown-item bg-purple text-light" href="#">
+                        Log Out
+                      </a>
+                    </div>
+                  </li>
+
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link ms-2 text-light" href="#">Log In</a>
+                  </li>
+                  <li class="nav-item btn btn-success">
+                    <a class="nav-link ms-2 text-light btn btn-success" href="#">Sign Up</a>
+                  </li>
+
+                {% endif %}
 
               </ul>
             </div>

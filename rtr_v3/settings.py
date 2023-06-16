@@ -88,7 +88,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                # StackOverflow
+                # categories context processor
                 'newssite.context_processors.categories',
 
             ],
