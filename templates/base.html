@@ -53,17 +53,23 @@
 
     <body class="h-100 w-100 d-flex flex-column bg-platinum">
 
-        <!-- Top Nav -->
+        {% comment %}
+          Top Nav
+        {% endcomment %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-purple">
 
-            <!-- Brand -->
+            {% comment %}
+              Brand
+            {% endcomment %}
             <a class="navbar-brand ms-3" href="{% url 'index' %}">
                 <span class="fs-3 text-light">R</span>
                 <h2 class="d-inline text-light">T</h2>
                 <span class="fs-3 text-light me-5">R</span>
             </a>
-
-            <!-- Navbar toggler for smaller screens -->
+            
+            {% comment %}
+              Navbar toggler for smaller screens
+            {% endcomment %}
             <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" 
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -71,16 +77,19 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-              <ul class="navbar-nav">
+              <ul class="navbar-nav ms-auto me-3">
 
-                <!-- Category dropdown menu -->
+                {% comment %}
+                  Category dropdown menu
+                {% endcomment %}
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle ms-2 text-light" href="#" 
-                     id="navbarDropdownMenuLink" data-bs-toggle="dropdown" 
+                  <a class="nav-link dropdown-toggle ms-2 text-light fs-4" href="#" 
+                     id="categories-dropdown" data-bs-toggle="dropdown" 
                      aria-haspopup="true" aria-expanded="false">
                     Categories
                   </a>
-                  <div class="dropdown-menu p-0 border-0 m-0 bg-purple" aria-labelledby="navbarDropdownMenuLink">
+                  <div class="dropdown-menu p-0 border-0 m-0 bg-purple" 
+                       aria-labelledby="categories-dropdown">
                     {% for category in categories %}
                         <a class="dropdown-item bg-purple text-light" href="#">
                           {{ category.friendly_name }}
@@ -90,46 +99,59 @@
                 </li>
 
                 <li class="nav-item active">
-                  <a class="nav-link ms-2 text-light" href="#">Home</a>
+                  <a class="nav-link ms-2 text-light fs-4" href="#">
+                    Home
+                  </a>
                 </li>
+
                 {% comment %}
                   if statement handles what user sees on the navbar depending if authenticated or not
                 {% endcomment %}
                 {% if user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link ms-2 text-light" href="#">
+                    <a class="nav-link ms-2 text-light fs-4" href="#">
                       <i class="fa-sharp fa-solid fa-pen-nib" style="color: #ffffff;"></i>
                       Create Post
                     </a>
                   </li>
+
                   {% comment %}
                     user actions dropdown menu
                   {% endcomment %}
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle ms-2 text-light" href="#" 
+                    <a class="nav-link dropdown-toggle ms-2 text-light fs-4" href="#"
                        id="userDropDown" data-bs-toggle="dropdown" 
                        aria-haspopup="true" aria-expanded="false">
                       <i class="fa-solid fa-user" style="color: #ffffff;"></i>
                       {{ user.username }}
                     </a>
                     <div class="dropdown-menu p-0 border-0 m-0 bg-purple" aria-labelledby="userDropDown">
-                      <a class="dropdown-item bg-purple text-light" href="#">
+                      <a class="dropdown-item bg-purple text-light fs-4" href="#">
                         My Profile
                       </a>
-                      <a class="dropdown-item bg-purple text-light" href="#">
+                      <a class="dropdown-item bg-purple text-light fs-4" href="{% url 'account_logout' %}">
                         Log Out
                       </a>
                     </div>
                   </li>
 
+                {% comment %}
+                  If user is not logged in
+                {% endcomment %}
                 {% else %}
-                  <li class="nav-item">
-                    <a class="nav-link ms-2 text-light" href="#">Log In</a>
-                  </li>
-                  <li class="nav-item btn btn-success">
-                    <a class="nav-link ms-2 text-light btn btn-success" href="#">Sign Up</a>
-                  </li>
 
+                  <li class="nav-item ml-auto">
+                    <a class="nav-link fs-4 ms-2 text-light" 
+                       href="{% url 'account_login' %}">
+                       Log In
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link fs-4 ms-2 text-light btn-success" 
+                       href="{% url 'account_signup' %}">
+                      Sign Up
+                    </a>
+                  </li>
                 {% endif %}
 
               </ul>
