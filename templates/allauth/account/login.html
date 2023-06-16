@@ -7,6 +7,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
+
       <h1>{% trans "Sign In" %}</h1>
 
       <p>{% blocktrans %}
@@ -14,7 +15,7 @@
         <a href="{{ signup_url }}">sign up</a> first.
         {% endblocktrans %}
       </p>
-    
+
       <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         {{ form.as_p }}
@@ -24,6 +25,7 @@
         <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
         <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
       </form>
+
     </div>
   </div>
 </div>
