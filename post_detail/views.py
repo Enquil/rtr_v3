@@ -14,6 +14,8 @@ class PostDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
 
+        template = 'post_detail/post_detail.html'
+
         # Only retrieves selected post if it has status: Published
         post = get_object_or_404(
 
@@ -38,8 +40,7 @@ class PostDetail(View):
 
         return render(
 
-            request,
-            'post_detail/post_detail.html',
+            request, template,
             {
                 'post': post,
                 "comments": comments,
@@ -109,8 +110,7 @@ class PostDetail(View):
             comment_form = CommentForm()
 
         return render(
-            request,
-            "post_detail/post_detail.html",
+            request, template,
             {
                 "post": post,
                 "comments": comments,
@@ -123,6 +123,7 @@ class PostDetail(View):
 class PostLike(View):
 
     def post(self, request, slug):
+
         post = get_object_or_404(Post, slug=slug)
 
         if post.likes.filter(id=request.user.id).exists():
