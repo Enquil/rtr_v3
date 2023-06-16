@@ -6,46 +6,73 @@
 
         <!-- Post Title -->
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 col-md-10 offset-md-1">
 
-                <h2>{{ post.title|title }}</h2>
-
-            </div>
-        </div>
-
-        <!-- Post Image Handling -->
-        {% if "placeholder" not in post.featured_image.url %}
-            <div class="row">
-                <div class="col-12 col-md-10 col-lg-8 col-xl-4 offset-0 offset-md-1 offset-lg-2 offset-xl-4 text-center">
-
-                    <img class="m-2 mx-auto d-block post-detail-img"
-                         src="{{ post.featured_image.url }}">
-
-                </div>
-            </div>
-        {% endif %}
+                <div class="row">
+                    <div class="col-12 text-center">
         
-        <!-- Post Content -->
-        <div class="row">
-            <div class="col-12 col-md-10 offset-md-1 text-center">
-
-                {{ post.content|safe }}
+                        <h2>{{ post.title|title }}</h2>
+        
+                    </div>
+                </div>
+        
+                <!-- Post Image Handling -->
+                {% if "placeholder" not in post.featured_image.url %}
+                    <div class="row">
+                        <div class="col-12 col-md-10 col-lg-8 col-xl-4 offset-0 offset-md-1 offset-lg-2 offset-xl-4 text-center">
+        
+                            <img class="m-2 mx-auto d-block post-detail-img"
+                                 src="{{ post.featured_image.url }}">
+        
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <!-- Post Content -->
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1 text-center">
+        
+                        {{ post.content|safe }}
+        
+                    </div>
+                </div>
 
             </div>
         </div>
         
         <!-- Like Button, Comment Form-->
         <div class="row">
-            <div class="col-12 col-md-10 col-lg-8 col-xl-4 offset-0 offset-md-1 offset-lg-2 offset-xl-4 text-center">
-                <!-- <div class="row">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-4 offset-0 
+                        offset-md-1 offset-lg-2 offset-xl-4 text-center">
+
+                <div class="row">
                     <div class="col-12">
-                        <form action="" method="post">
-                            <button class="btn btn-success">
-                                Like
-                            </button>
+
+                        <form class="like-form" 
+                              action="{% url 'post_like' post.slug %}" 
+                              method="POST">
+
+                            {% csrf_token %}
+
+                            <div class="row text-center">
+                                <div class="col">
+                                    {% if liked %}
+                                        <button type="submit" class="btn-liked border-0">
+                                            <i class="fa-solid fa-thumbs-up fa-2x"></i>
+                                        </button>
+                                    {% else %}
+                                        <button type="submit" class="btn-like border-0">
+                                            <i class="far fa-thumbs-up fa-2x"></i>
+                                        </button>
+                                    {% endif %}
+                                    <span class="likes-count fs-1">
+                                        {{ post.number_of_likes }}
+                                    </span>
+                                </div>
+                            </div>
                         </form>
                     </div>
-                </div> -->
+                </div>
 
                 <!-- Comment Form -->
                 <form action="" method="post">
