@@ -55,6 +55,8 @@
 
         <!-- Top Nav -->
         <nav class="navbar navbar-expand-lg navbar-light bg-bone">
+
+            <!-- Brand -->
             <a class="navbar-brand ms-3" href="{% url 'index' %}">
                 <span class="fs-3 text-dark">R</span><h2 class="d-inline text-dark">T</h2><span class="fs-3 text-dark me-5">R</span>
             </a>
@@ -119,14 +121,7 @@
 
     <!-- Message Timer -->
     <script>
-        setTimeout(function () {
-
-            let messages = document.getElementById('msg');
-            let alert = new bootstrap.Alert(messages);
-
-            alert.close();
-
-        }, 4000);
+      setTimeout(function(){var e=document.getElementById("msg");let t=new bootstrap.Alert(e);t.close()},4e3);
     </script>
 
 </html>
