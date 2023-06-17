@@ -12,6 +12,14 @@ input:focus {
 }
 
 
+/* Edited Bootstrap */
+
+.vr {
+    width: 1px;
+    background-color: white!important;
+}
+
+
 /* Navbar styling */
 
 .dropdown-item:hover {
@@ -49,12 +57,12 @@ input:focus {
 
 /* Colors */
 
-.indigo {
-    color: #907AD6;
+.slate {
+    color: #6F53CA;
 }
 
-.bg-indigo {
-    background-color: #907AD6;
+.bg-slate {
+    background-color: #6F53CA;
 }
 
 .feldgrau {
