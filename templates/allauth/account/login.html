@@ -6,7 +6,7 @@
 
 <div class="container-fluid mt-3">
   <div class="row">
-    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+    <div id="login-header" class="col-12 col-md-6 text-end">
 
       <h1>Sign In</h1>
 
@@ -14,7 +14,8 @@
         If you have not created an account yet, then please
         <a href="{{ signup_url }}">sign up</a> first.
       </p>
-
+    </div>
+    <div class="col-12 col-md-6">
       <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         <div class="d-block mb-2">
@@ -39,7 +40,6 @@
           Forgot Password?
         </a>
       </form>
-
     </div>
   </div>
 </div>

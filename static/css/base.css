@@ -1,10 +1,14 @@
-
 /* Elements css */
 
 textarea {
     resize: none;
     width: 500px;
     max-width: 100%;
+}
+
+input:focus {
+    outline: none;
+
 }
 
 
@@ -23,19 +27,23 @@ textarea {
     height: auto;
 }
 
+#login-header {
+    border-right: 1px solid black;
+}
+
 
 /* Forms */
 
 #signup_form > p > label {
-    display: block;
+    display: none;
 }
 
-.login > p > label {
-    display: block;
+#signup_form > p > input {
+    font-size: 28px;
 }
 
-.login:last-child {
-    display: block;
+.login > div > input {
+    font-size: 28px;
 }
 
 
