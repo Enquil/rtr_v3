@@ -6,36 +6,30 @@
 
 <div class="container-fluid mt-3">
   <div class="row">
-    <div id="login-header" class="col-12 col-md-6 text-end">
-
+    <div class="col-12 text-center">
       <h1>Sign In</h1>
-
       <p>
         If you have not created an account yet, then please
         <a href="{{ signup_url }}">sign up</a> first.
       </p>
-    </div>
-    <div class="col-12 col-md-6">
-      <form class="login" method="POST" action="{% url 'account_login' %}">
+      <form class="login bg-powder" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         <div class="d-block mb-2">
-          <label class="d-block" for="remember">Username</label>
           {{ form.login }}
         </div>
         <div class="d-block mb-2">
-          <label class="d-block" for="remember">Password</label>
           {{ form.password }}
         </div>
         <div class="d-block mb-2">
           <label for="remember">Remember me:</label>
-          {{ form.remember }}
+          {{ form.remember }} 
+          <button class="primaryAction ms-3 mb-2 btn btn-success" type="submit">Sign In</button>
         </div>
         {% if redirect_field_value %}
         <input type="hidden" 
-               name="{{ redirect_field_name }}" 
-               value="{{ redirect_field_value }}" />
+              name="{{ redirect_field_name }}" 
+              value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="primaryAction d-block mb-2" type="submit">Sign In</button>
         <a class="button secondaryAction" href="{% url 'account_reset_password' %}">
           Forgot Password?
         </a>

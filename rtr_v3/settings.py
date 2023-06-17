@@ -118,7 +118,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 # Login and Logout redirects to homepage
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MESSAGE_TAGS = {
 

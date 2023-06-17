@@ -51,7 +51,7 @@
 
     </head>
 
-    <body class="h-100 w-100 d-flex flex-column bg-platinum">
+    <body class="h-100 w-100 d-flex flex-column bg-alice">
 
         {% comment %}
           Top Nav
@@ -158,7 +158,9 @@
             </div>
           </nav>
 
-        <!-- Message Container -->
+        {% comment %}
+          Message Container
+        {% endcomment %}
         <div class="container-fluid message-container">
             <div class="row">
                 <div class="col-md-6 offset-md-3 text-center">
@@ -174,17 +176,23 @@
             </div>
         </div>
 
-        <!-- Individual Template Content -->
+        {% comment %}
+          Individual Template Content
+        {% endcomment %}
         {% block content %}
         {% endblock content %}
 
-        <!-- Footer -->
+        {% comment %}
+          Footer
+        {% endcomment %}
         <footer class="mt-auto w-100">
         </footer>
 
     </body>
 
-    <!-- Message Timer -->
+    {% comment %}
+      Message Timer
+    {% endcomment %}
     <script>
       setTimeout(function(){var e=document.getElementById("msg");let t=new bootstrap.Alert(e);t.close()},4e3);
     </script>

@@ -1,4 +1,4 @@
-/* Elements css */
+/* Elements styling */
 
 textarea {
     resize: none;
@@ -12,14 +12,14 @@ input:focus {
 }
 
 
-/* Navbar css */
+/* Navbar styling */
 
 .dropdown-item:hover {
-    background-color: #4B304B;
+    background-color: #6F53CA;
 }
 
 
-/* PostDetail css */
+/* PostDetail styling */
 
 .post-detail-img {
     width: 500px;
@@ -27,12 +27,12 @@ input:focus {
     height: auto;
 }
 
+
+/* Allauth templates and Form styling */
+
 #login-header {
     border-right: 1px solid black;
 }
-
-
-/* Forms */
 
 #signup_form > p > label {
     display: none;
@@ -49,28 +49,28 @@ input:focus {
 
 /* Colors */
 
-.platinum {
-    color: #EAEAEA;
+.indigo {
+    color: #907AD6;
 }
 
-.bg-platinum {
-    background-color: #EAEAEA;
+.bg-indigo {
+    background-color: #907AD6;
 }
 
-.battleship {
-    color: #8A9489;
+.feldgrau {
+    color: #3F5E5A;
 }
 
-.bg-battleship {
-    background-color: #8A9489;
+.bg-feldgrau {
+    background-color: #3F5E5A;
 }
 
-.payne {
-    color: #4D6A6D;
+.alice {
+    color: #E4EBF1;
 }
 
-.bg-payne {
-    background-color: #4D6A6D;
+.bg-alice {
+    background-color: #E4EBF1;
 }
 
 .purple {
@@ -88,5 +88,3 @@ input:focus {
 .bg-cinnabar {
     background-color: #E55934;
 }
-
-
