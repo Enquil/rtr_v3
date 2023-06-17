@@ -119,6 +119,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+
 MESSAGE_TAGS = {
 
     messages.DEBUG: 'alert-info',
