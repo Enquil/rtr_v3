@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     # apps
     'newssite',
     'post_detail'
-
+    'create_post'
 ]
 
 MIDDLEWARE = [
