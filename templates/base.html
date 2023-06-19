@@ -88,10 +88,10 @@
                      aria-haspopup="true" aria-expanded="false">
                     Categories
                   </a>
-                  <div class="dropdown-menu p-0 border-0 m-0 bg-purple" 
+                  <div class="dropdown-menu p-0 border-0 m-0 bg-purple"
                        aria-labelledby="categories-dropdown">
                     {% for category in categories %}
-                        <a class="dropdown-item bg-purple text-light" href="#">
+                        <a data="{{category}}" class="dropdown-item bg-purple text-light" href="{% url 'index' '{{ category }}' %}">
                           {{ category.friendly_name }}
                         </a>
                     {% endfor %}
