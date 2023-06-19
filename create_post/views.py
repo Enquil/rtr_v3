@@ -12,34 +12,32 @@ from django.http import (HttpResponse,
 
 class CreatePost(View):
 
-    def get(self, request, user, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
 
-        if user.is_authenticated:
-            return render(
-                request,
-                "create_post/create_post.html",
-                {
-                    "post_form": PostForm()
-                },
-            )
+        return render(
+            request,
+            "create_post/create_post.html",
+            {
+                "post_form": PostForm()
+            },
+        )
 
-    def post(self, request, user, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
 
-        if user.is_authenticated:
-            if request.method == "POST":
-                post_form = PostForm(request.POST, request.FILES)
+        if request.method == "POST":
+            post_form = PostForm(request.POST, request.FILES)
 
-                if post_form.is_valid():
-                    user = User.objects.get(id=request.user.id)
-                    post_form.instance.email = request.user.email
-                    post_form.instance.author = request.user
-                    post = post_form.save(commit=False)
-                    post.save()
-                    messages.success(request, f'Post was successful!')
-                    return HttpResponseRedirect(
-                                                reverse(
-                                                        'post_detail',
-                                                        args=[post.slug]
-                                                ))
-                else:
-                    post_form = PostForm()
+            if post_form.is_valid():
+                user = User.objects.get(id=request.user.id)
+                post_form.instance.email = request.user.email
+                post_form.instance.author = request.user
+                post = post_form.save(commit=False)
+                post.save()
+                messages.success(request, f'Post was successful!')
+                return HttpResponseRedirect(
+                                            reverse(
+                                                    'post_detail',
+                                                    args=[post.slug]
+                                            ))
+            else:
+                post_form = PostForm()

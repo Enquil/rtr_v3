@@ -103,14 +103,15 @@
                     Home
                   </a>
                 </li>
-
+                <div class="vr"></div>
                 {% comment %}
                   if statement handles what user sees on the navbar depending if authenticated or not
                 {% endcomment %}
                 {% if user.is_authenticated %}
-                  <div class="vr"></div>
+
                   <li class="nav-item">
-                    <a class="nav-link ms-2 me-2 text-light fs-4" href="#">
+                    <a class="nav-link ms-2 me-2 text-light fs-4" 
+                       href="{% url 'create_post' %}">
                       <i class="fa-sharp fa-solid fa-pen-nib" style="color: #ffffff;"></i>
                       Create Post
                     </a>
@@ -150,7 +151,6 @@
                        Log In
                     </a>
                   </li>
-                  <div class="vr"></div>
                   <li class="nav-item">
                     <a class="nav-link fs-4 ms-2 text-light btn-success" 
                        href="{% url 'account_signup' %}">

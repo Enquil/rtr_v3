@@ -61,8 +61,8 @@ INSTALLED_APPS = [
 
     # apps
     'newssite',
-    'post_detail'
-    'create_post'
+    'post_detail',
+    'create_post',
 ]
 
 MIDDLEWARE = [
@@ -112,9 +112,11 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+
 # Allauth Settings and Login/Logout Handling
 SITE_ID = 1  # let's django handle multiple sites from single database
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 # Login and Logout redirects to homepage
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
