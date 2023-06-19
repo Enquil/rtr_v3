@@ -25,14 +25,17 @@ class CreatePost(View):
     def post(self, request, *args, **kwargs):
 
         if request.method == "POST":
+
             post_form = PostForm(request.POST, request.FILES)
 
             if post_form.is_valid():
+
                 user = User.objects.get(id=request.user.id)
                 post_form.instance.email = request.user.email
                 post_form.instance.author = request.user
                 post = post_form.save(commit=False)
                 post.save()
+
                 messages.success(request, f'Post was successful!')
                 return HttpResponseRedirect(
                                             reverse(
