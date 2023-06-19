@@ -13,8 +13,6 @@ class PostList(generic.ListView):
     template_name = "newssite/index.html"
     paginate_by = 3
 
-    def get_queryset(self, **kwargs):
-        print(kwargs)
-        category = self.request.GET.get('category', None)
+    def get_queryset(self, category, **kwargs):
         print(category)
         return Post.objects.filter(status=1)
