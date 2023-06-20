@@ -91,7 +91,7 @@
                   <div class="dropdown-menu p-0 border-0 m-0 bg-purple"
                        aria-labelledby="categories-dropdown">
                     {% for category in categories %}
-                        <a data="{{category}}" class="dropdown-item bg-purple text-light" href="{% url 'index' '{{ category }}' %}">
+                        <a data="{{category}}" class="dropdown-item bg-purple text-light" href="{% url 'index' %}?{{ category.name }}">
                           {{ category.friendly_name }}
                         </a>
                     {% endfor %}

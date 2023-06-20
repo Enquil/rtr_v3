@@ -18,18 +18,14 @@ class PostDetail(View):
 
         # Only retrieves selected post if it has status: Published
         post = get_object_or_404(
-
             Post.objects.filter(status=1),
             slug=slug
-
         )
 
         # Retrieves top-level comment parents
         comments = post.comments.filter(
-
             approved=True,
             parent__isnull=True
-
         ).order_by("-created_on")
 
         # Sets liked to False
@@ -53,21 +49,19 @@ class PostDetail(View):
 
         # Only retrieves selected post if it has status: Published
         post = get_object_or_404(
-
             Post.objects.filter(status=1),
             slug=slug
-
         )
 
         # Retrieves top-level comment parents
         comments = post.comments.filter(
-
             approved=True,
             parent__isnull=True
-
         ).order_by("-created_on")
 
-        comment_form = CommentForm(data=request.POST)
+        comment_form = CommentForm(
+            data=request.POST
+        )
 
         if comment_form.is_valid():
 
