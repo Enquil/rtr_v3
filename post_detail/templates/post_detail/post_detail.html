@@ -77,7 +77,6 @@
                 <!-- Comment Form -->
                 <form action="" method="post">
 
-                    <!-- Text Area -->
                     <div class="row">
                         <div class="col-12">
                             {% csrf_token %}
@@ -87,8 +86,10 @@
 
                     <!-- Post Comment Button -->
                     <div class="row">
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-success">
+                        <div class="col-12 col-sm-10 offset-sm-1 
+                                    col-md-8 offset-md-2 col-lg-6 
+                                    offset-lg-3 col-xl-4 offset-xl-4">
+                            <button type="submit" class="btn btn-success mt-2">
                                 Post Comment
                             </button>
                         </div>
@@ -107,7 +108,9 @@
                                 col-md-8 offset-md-2 col-lg-6 
                                 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 col-sm-10 offset-sm-1
+                                        col-md-8 offset-md-2 col-lg-6 
+                                        offset-lg-3 col-xl-4 offset-xl-4">
                                 {{ comment.body }}
                             </div>
                         </div>

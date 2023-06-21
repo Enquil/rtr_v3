@@ -29,8 +29,8 @@ class PostDetail(View):
         ).order_by("-created_on")
 
         # Sets liked to False
-        # Then sets it to True if user.id exists in Post likes
         liked = False
+        # Sets liked to True if user.id exists in Post likes, in database
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
 
@@ -71,13 +71,13 @@ class PostDetail(View):
 
             # get parent comment id from hidden input (if it exists)
             if request.POST.get('parent_id'):
-                # Make sures the id is an int
+                # turn parent-id to an int to find the comment in comments
                 parent_id = int(request.POST.get('parent_id'))
 
             '''
-            if parent_id exists in the form,
-            stores the comment from the comments queryset,
-            with corresponding id as parent_obj
+                if parent_id exists in the form,
+                stores the comment from the comments queryset,
+                with corresponding id as parent_obj
             '''
             if parent_id:
                 parent_obj = comments.get(id=parent_id)
@@ -88,8 +88,7 @@ class PostDetail(View):
                     # assign parent_obj ID to reply comment as foreign key
                     reply_comment.parent = parent_obj
 
-            # if NOT a reply comment
-            # create comment object
+            # If not a reply, just create a comment object
             comment = comment_form.save(commit=False)
             # assign comment to post
             comment.post = post
