@@ -30,7 +30,8 @@
             post content
         {% endcomment %}
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-md-10 col-lg-8
+                        offset-md-1 offset-md-2">
                 {{ post.content|safe }}
             </div>
         </div>
@@ -41,6 +42,7 @@
         {% endcomment %}
         <div class="row">
             <div class="col-12">
+                {{ post.number_of_likes }}
             </div>
         </div>
 
@@ -59,12 +61,18 @@
         {% endcomment %}
 
         {% for comment in comments %}
-        <div class="row">
-            <div class="col-12 col-sm-8 col-md-6 col-xl-4
-                        offset-sm-2 offset-md-3 offset-xl-4">
-                {{ comment.body }}
+            <div class="row">
+                <div class="col-12 col-sm-8 col-md-6 col-xl-4
+                            offset-sm-2 offset-md-3 offset-xl-4">
+                            <hr>
+                    <p class="mb-0 mt-1 d-inline-block"><strong>{{ comment.name }}</strong></p> 
+                    <small> | {{ comment.created_on }}</small>
+                    <p class="mb-1 ms-2">{{ comment.body }}</p>
+                </div>
             </div>
-        </div>
+            {% if forloop.counter == comments.count %}
+            <hr>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}
