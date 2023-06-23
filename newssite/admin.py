@@ -9,19 +9,20 @@ class PostAdmin(SummernoteModelAdmin):
     list_filter = ('status', 'created_on')
 
     list_display = (
-
         'author',
         'title',
         'slug',
         'status',
         'created_on',
         'category'
-
     )
 
     search_fields = ('title', 'content')
     summernote_fields = ('content')
-    actions = ['disable_selected_posts', 'publish_selected_posts']
+    actions = [
+        'disable_selected_posts',
+        'publish_selected_posts'
+    ]
 
     def disable_selected_posts(self, request, queryset):
         queryset.update(status=2)
@@ -34,7 +35,6 @@ class PostAdmin(SummernoteModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
 
     list_display = (
-
         'author',
         'id',
         'body',
@@ -42,12 +42,14 @@ class CommentAdmin(admin.ModelAdmin):
         'created_on',
         'approved',
         'parent_id',
-
     )
 
     list_filter = ('approved', 'created_on')
     search_fields = ('author', 'email', 'body')
-    actions = ['approve_selected_comments', 'disable_selected_comments']
+    actions = [
+        'approve_selected_comments',
+        'disable_selected_comments'
+    ]
 
     def disable_selected_comments(self, request, queryset):
         queryset.update(approved=False)
@@ -59,4 +61,4 @@ class CommentAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'name', 'friendly_name',)
+    list_display = ('id', 'name', 'friendly_name')
