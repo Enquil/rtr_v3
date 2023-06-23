@@ -15,13 +15,18 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    programatic = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
         return self.name
 
     def get_friendly_name(self):
         return self.friendly_name
+
+    def save(self, *args, **kwargs):
+        if self.programatic is None:
+            self.programatic = lower(self.name)
+        return super().save(*args, **kwargs)
 
 
 class Post(models.Model):

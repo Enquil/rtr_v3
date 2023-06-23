@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage
 
 
-class PostList(View):
+class PostList(ListView):
     '''
     - Sourced from Code Institute
     '''
@@ -15,14 +15,6 @@ class PostList(View):
     template_name = "newssite/index.html"
     paginate_by = 3
 
-    def get(self, request, *args, **kwargs):
-        post_list = Post.objects.all()
-        paginator = Paginator(post_list, 2)
-
-        return render(
-            request, "newssite/index.html",
-            {
-                'post_list': post_list,
-                'paginator': paginator
-            }
-        )
+    def get_queryset(self):
+        meow = self.request.GET.get('category')
+        return super().get_queryset()
