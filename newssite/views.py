@@ -16,5 +16,5 @@ class PostList(ListView):
     paginate_by = 3
 
     def get_queryset(self):
-        meow = self.request.GET.get('category')
-        return super().get_queryset()
+        category = self.request.GET.get('category')
+        return Post.objects.filter(category=category)
