@@ -25,6 +25,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if self.programatic is None:
+            self.programatic = None
             lower_name = self.name.lower()
             self.programatic = lower_name.replace(" ", "_", 10)
         return super().save(*args, **kwargs)
@@ -99,19 +100,16 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         related_name="comments"
     )
-
     author = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField(max_length=300)
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
-
     likes = models.ManyToManyField(
         User,
         related_name='comment_likes',
         blank=True
     )
-
     parent = models.ForeignKey(
         'self',
         null=True,

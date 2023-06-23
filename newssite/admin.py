@@ -6,7 +6,7 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
 
-    list_filter = ('status', 'created_on')
+    list_filter = ('status', 'author')
 
     list_display = (
         'author',
@@ -44,7 +44,7 @@ class CommentAdmin(admin.ModelAdmin):
         'parent_id',
     )
 
-    list_filter = ('approved', 'created_on')
+    list_filter = ('approved', 'author')
     search_fields = ('author', 'email', 'body')
     actions = [
         'approve_selected_comments',
