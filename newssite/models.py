@@ -25,7 +25,8 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if self.programatic is None:
-            self.programatic = lower(self.name)
+            lower_name = self.name.lower()
+            self.programatic = lower_name.replace(" ", "_", 10)
         return super().save(*args, **kwargs)
 
 
