@@ -35,7 +35,7 @@ class CommentAdmin(admin.ModelAdmin):
 
     list_display = (
 
-        'name',
+        'author',
         'id',
         'body',
         'post',
@@ -46,7 +46,7 @@ class CommentAdmin(admin.ModelAdmin):
     )
 
     list_filter = ('approved', 'created_on')
-    search_fields = ('name', 'email', 'body')
+    search_fields = ('author', 'email', 'body')
     actions = ['approve_selected_comments', 'disable_selected_comments']
 
     def disable_selected_comments(self, request, queryset):
