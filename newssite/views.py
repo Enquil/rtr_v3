@@ -13,8 +13,13 @@ class PostList(ListView):
     model = Post
     ordering = ['-created_on']
     template_name = "newssite/index.html"
+    # Sets number of items to be displayed per page
     paginate_by = 3
 
     def get_queryset(self):
+        '''
+        Overrides default behavior when getting the queryset
+        Lets user filter by category
+        '''
         category = self.request.GET.get('category')
-        return Post.objects.filter(category=category)
+        return Post.objects.filter(category=category).order_by('-created_on')

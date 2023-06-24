@@ -2,9 +2,8 @@ from newssite.models import Post, Comment
 from django.views import View
 from .forms import CommentForm
 from django.shortcuts import (
-
-    render, get_object_or_404, redirect, reverse
-
+    render, get_object_or_404,
+    redirect, reverse
 )
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -53,7 +52,7 @@ class PostDetail(View):
             slug=slug
         )
 
-        # Retrieves top-level comment parents
+        # Retrieves top-level comments, i.e no parents, like batman
         comments = post.comments.filter(
             approved=True,
             parent__isnull=True
