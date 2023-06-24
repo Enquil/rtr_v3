@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage
 
 class PostList(ListView):
     '''
-    - Sourced from Code Institute
+    Sourced from Code Institute
     '''
     model = Post
     ordering = ['-created_on']
@@ -22,4 +22,7 @@ class PostList(ListView):
         Lets user filter by category
         '''
         category = self.request.GET.get('category')
-        return Post.objects.filter(category=category).order_by('-created_on')
+        if category is not None:
+            return Post.objects.filter(
+                category=category).order_by('-created_on')
+        return Post.objects.all().order_by('-created_on')
