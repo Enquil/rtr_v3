@@ -8,8 +8,10 @@
             title
         {% endcomment %}
         <div class="row text-center">
-            <div class="col-12">
-                <h2>{{ post.title }}</h2>
+            <div class="col-12 text-center">
+                <hr class="w-50 post-title-space">
+                <h1>{{ post.title }}</h1>
+                <hr class="w-50 post-title-space">
             </div>
         </div>
 
@@ -19,7 +21,7 @@
         <div class="row">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6
                         offset-sm-1 offset-md-2 offset-lg-3">
-                {% if post.featured_image.url != 'placeholder' %}
+                {% if 'placeholder' not in post.featured_image.url %}
                     <img class="m-2 mx-auto d-block post-detail-img"
                         src="{{ post.featured_image.url }}">
                 {% endif %}

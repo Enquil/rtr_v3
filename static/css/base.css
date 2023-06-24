@@ -29,6 +29,10 @@ input:focus {
 
 /* PostDetail styling */
 
+.post-title-space {
+    margin-left: 25%;
+}
+
 .post-detail-img {
     width: 500px;
     max-width: 100%;
