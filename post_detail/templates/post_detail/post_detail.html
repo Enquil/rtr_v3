@@ -28,12 +28,21 @@
             </div>
         </div>
 
+        {% comment %} 
+        <div class="row">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6
+                        offset-sm-1 offset-md-2 offset-lg-3 mb-5">
+                {{ post.author }}
+            </div>
+        </div> 
+        {% endcomment %}
+
         {% comment %}
             content
         {% endcomment %}
         <div class="row">
             <div class="col-12 col-md-10 col-lg-8
-                        offset-md-1 offset-md-2">
+                        offset-md-1 offset-lg-2">
                 {{ post.content|safe }}
             </div>
         </div>
@@ -44,9 +53,24 @@
         {% endcomment %}
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 col-xl-4
-                        offset-sm-2 offset-md-3 offset-xl-4">
-                <i class="fa-regular fa-thumbs-up"></i>
-                {{ post.number_of_likes }}
+                        offset-sm-2 offset-md-3 offset-xl-4 mb-2">
+                <div class="form-right-container d-flex justify-content-end">
+                    <form class="like-form" 
+                    action="{% url 'post_like' post.slug %}" 
+                    method="POST">
+                        {% csrf_token %}
+                        {{ post.number_of_likes }}
+                        {% if liked %}
+                            <button class="p-0 m-0 border-0 bg-alice" type="submit">
+                                <i class="fa-regular fa-thumbs-up fa-2xl d-block mb-3" style="color: #0047AB"></i>
+                            </button>
+                        {% else %}
+                            <button class="p-0 m-0 border-0 bg-alice" type="submit">
+                                <i class="fa-regular fa-thumbs-up fa-2xl d-block mb-3"></i>
+                            </button>
+                        {% endif %}
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -73,7 +97,7 @@
                     <p class="mb-1 ms-2">{{ comment.body }}</p>
                     {% comment %}
                         for loop iterating comments,
-                        if statement appends <hr> to last comment
+                        if statement appends an hr tag to last comment
                     {% endcomment %}
                     {% if forloop.counter == comments.count %}
                         <hr>
