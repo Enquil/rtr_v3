@@ -100,7 +100,9 @@
                           <input class="w-100 bg-purple border-0 text-white" type="hidden" value="{{ category.id }}" name="category">
                           <button class="w-100 border-0 p-0 m-0 mb-1 bg-purple" 
                                   type="submit">
-                            <span class="text-white fs-4 mx-1 me-auto d-inline">{{ category }}</span>
+                            <span class="text-white fs-4 mx-1 d-inline">
+                              {{ category }}
+                            </span>
                           </button>
                         </form>
                     {% endfor %}
