@@ -11,7 +11,7 @@
                         <div class="card mt-5 card-border mb-2">
                             <a href="{% url 'post_detail' post.slug %}" class="post-detail-link d-block my-5 text-dark text-decoration-none">
 
-                                <h6>{{ post.category.friendly_name }} | By: {{ post.author | safe }}
+                                <h6>{{ post.category.name }} | By: {{ post.author | safe }}
                                     <span class="post-date"> | {{ post.created_on }}</span>
                                 </h6>
 
