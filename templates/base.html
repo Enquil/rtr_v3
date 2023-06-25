@@ -57,16 +57,14 @@
           Top Nav
         {% endcomment %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-purple">
-
             {% comment %}
               Brand
             {% endcomment %}
             <a class="navbar-brand ms-3" href="{% url 'index' %}">
-                <span class="fs-3 text-light">R</span>
-                <h2 class="d-inline text-light">T</h2>
-                <span class="fs-3 text-light me-5">R</span>
+                <span class="fs-3 text-white">R</span>
+                <h2 class="d-inline text-white">T</h2>
+                <span class="fs-3 text-white me-5">R</span>
             </a>
-            
             {% comment %}
               Navbar toggler for smaller screens
             {% endcomment %}
@@ -78,12 +76,11 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
               <ul class="navbar-nav ms-auto me-5">
-
                 {% comment %}
                   Category dropdown menu
                 {% endcomment %}
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle ms-2 me-2 text-light fs-4" 
+                  <a class="nav-link dropdown-toggle ms-2 me-2 text-white fs-4" 
                      href="#" 
                      id="categories-dropdown" data-bs-toggle="dropdown" 
                      aria-haspopup="true" aria-expanded="false">
@@ -91,26 +88,18 @@
                   </a>
                   <div class="dropdown-menu p-0 border-0 m-0 bg-purple"
                        aria-labelledby="categories-dropdown">
-                    {% comment %}
-                      For loop iterates all categories in database,
-                      hidden input uses corresponding
-                    {% endcomment %}
+                    <!--
+                      For loop iterates all categories in database, 
+                      hidden input uses corresponding id to filter the queryset
+                    -->
                     {% for category in categories %}
-                        <form class="dropdown-item bg-purple text-light p-0" action="{% url 'index' %}" method="get">
-                          <input class="w-100 bg-purple border-0 text-white" type="hidden" value="{{ category.id }}" name="category">
-                          <button class="w-100 border-0 p-0 m-0 mb-1 bg-purple" 
-                                  type="submit">
-                            <span class="text-white fs-4 mx-1 d-inline">
-                              {{ category }}
-                            </span>
-                          </button>
-                        </form>
+                      <a class="dropdown-item bg-purple text-white" href="{% url 'index' %}?category={{ category.id }}">{{ category }}</a>
                     {% endfor %}
                   </div>
                 </li>
 
                 <li class="nav-item active">
-                  <a class="nav-link ms-2 text-light fs-4 me-2" href="#">
+                  <a class="nav-link ms-2 text-white fs-4 me-2" href="#">
                     Home
                   </a>
                 </li>
@@ -121,7 +110,7 @@
                 {% if user.is_authenticated %}
 
                   <li class="nav-item">
-                    <a class="nav-link ms-2 me-2 text-light fs-4" 
+                    <a class="nav-link ms-2 me-2 text-white fs-4" 
                        href="{% url 'create_post' %}">
                       <i class="fa-sharp fa-solid fa-pen-nib" style="color: #ffffff;"></i>
                       Create Post
@@ -132,20 +121,20 @@
                     user actions dropdown menu
                   {% endcomment %}
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle ms-2 text-light fs-4" href="#"
+                    <a class="nav-link dropdown-toggle ms-2 text-white fs-4" href="#"
                        id="userDropDown" data-bs-toggle="dropdown" 
                        aria-haspopup="true" aria-expanded="false">
                       <i class="fa-solid fa-user" style="color: #ffffff;"></i>
                       {{ user.username }}
                     </a>
                     <div class="dropdown-menu p-0 border-0 m-0 bg-purple" aria-labelledby="userDropDown">
-                      <a class="dropdown-item bg-purple text-light fs-5" href="{% url 'profile' %}">
+                      <a class="dropdown-item bg-purple text-white fs-5" href="{% url 'profile' %}">
                         Profile
                       </a>
-                      <a class="dropdown-item bg-purple text-light fs-5" href="">
+                      <a class="dropdown-item bg-purple text-white fs-5" href="">
                         User Settings
                       </a>
-                      <a class="dropdown-item bg-purple text-light fs-5" href="{% url 'account_logout' %}">
+                      <a class="dropdown-item bg-purple text-white fs-5" href="{% url 'account_logout' %}">
                         Log Out
                       </a>
                     </div>
@@ -157,13 +146,13 @@
                 {% else %}
 
                   <li class="nav-item ml-auto">
-                    <a class="nav-link fs-4 ms-2 text-light" 
+                    <a class="nav-link fs-4 ms-2 text-white" 
                        href="{% url 'account_login' %}">
                        Log In
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link fs-4 ms-2 text-light btn-success" 
+                    <a class="nav-link fs-4 ms-2 text-white btn-success" 
                        href="{% url 'account_signup' %}">
                       Sign Up
                     </a>
