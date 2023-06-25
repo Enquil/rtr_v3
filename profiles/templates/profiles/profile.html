@@ -3,6 +3,36 @@
 
 {% block content %}
     <div class="container-fluid">
-        welcome {{ profile.user.username }}
+        <div class="row">
+            <div class="col-12 text-center">
+                <hr>
+                <h1>Welcome {{ request.user.username }}</h1>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {% for post in posts %}
+                <div class="row">
+                    <div class="col-12">
+                        {{ post.title }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {% for comments in comments %}
+                <div class="row">
+                    <div class="col-12">
+                        {{ comment.body }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
