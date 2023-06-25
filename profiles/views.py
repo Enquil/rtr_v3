@@ -13,12 +13,20 @@ class ProfileView(View):
 
     def get(self, request, *args, **kwargs):
 
-        profile = get_object_or_404(UserProfile, user=request.user)
-        print(profile.user)
-        return render(
-            request,
-            "profiles/profile.html",
-            {
-                'profile': profile,
-            },
-        )
+        if request.user.is_anonymous is False:
+            profile = get_object_or_404(UserProfile, user=request.user)
+            return render(
+                request,
+                "profiles/profile.html",
+                {
+                    'profile': profile,
+                },
+            )
+        else:
+            messages.error(
+                request, f'You do not have permission for that'
+            )
+            return render(
+                request,
+                "newssite/index.html",
+            )
