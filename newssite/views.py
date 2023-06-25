@@ -14,31 +14,32 @@ class PostList(ListView):
     model = Post
     ordering = ['-created_on']
     template_name = "newssite/index.html"
-    # Sets number of items to be displayed per page
+    # number of items to be displayed per page
     paginate_by = 2
-    filtered = False
 
     def get_queryset(self):
         '''
         Overrides default behavior when getting the queryset
-        Lets user filter by category
         '''
+
+        # capture value passed for category
         category = self.request.GET.get('category')
+
+        # filters by category if category is not None
         if category is not None:
-            filtered = True
             return Post.objects.filter(
-                category=category).order_by('-created_on')
+                    category=category
+                   ).order_by('-created_on')
+        # just get all posts if category is None
         else:
             return Post.objects.all().order_by('-created_on')
 
     def get_context_data(self, **kwargs):
+        '''
+        Overrides default context behavior
+        sets context['category'] to either:
+        the category captured in request.GET OR None
+        '''
         context = super().get_context_data(**kwargs)
-        context["category"] = self.request.GET.get('category')
-        print(context)
+        context["category"] = self.request.GET.get('category', None)
         return context
-
-    def urlencode_filter(self):
-        qd = self.request.GET.copy()
-        print(qd)
-        qd.pop(self.page_kwarg, None)
-        return qd.urlencode()
