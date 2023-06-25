@@ -24,22 +24,24 @@
             </div>
         </div>
 
-        <!-- post.content -->
+        <!-- post.content row -->
         <div class="row">
-            <div class="col-12 col-md-10 col-lg-8
-                        offset-md-1 offset-lg-2 mb-4">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6
+                        offset-md-1 offset-lg-2 offset-xl-3 mb-4">
+
                 {{ post.content|safe }}
             </div>
         </div>
 
-        <!-- post.likes.count and like form -->
+        <!-- post.likes.count and like form row -->
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 col-xl-4
                         offset-sm-2 offset-md-3 offset-xl-4 mb-2">
                 <div class="form-right-container d-flex justify-content-end">
-                    <form class="like-form" 
-                    action="{% url 'post_like' post.slug %}" 
-                    method="POST">
+
+                    <form class="like-form"
+                          action="{% url 'post_like' post.slug %}" 
+                          method="POST">
                         {% csrf_token %}
                         {{ post.number_of_likes }}
                         {% if liked %}
@@ -56,12 +58,11 @@
             </div>
         </div>
 
-        {% comment %}
-            comment form
-        {% endcomment %}
+        <!-- comment form row -->
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 col-xl-4
                         offset-sm-2 offset-md-3 offset-xl-4">
+
                 <form action="" method="post">
                     {% csrf_token %}
                     {{ comment_form }}
@@ -74,9 +75,7 @@
             </div>
         </div>
 
-        {% comment %}
-            for loop iterating comments
-        {% endcomment %}
+        <!-- comments row(s) -->
         {% for comment in comments %}
             <div class="row">
                 <div class="col-12 col-sm-8 col-md-6 col-xl-4
