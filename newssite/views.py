@@ -22,7 +22,9 @@ class PostList(ListView):
         Lets user filter by category
         '''
         category = self.request.GET.get('category')
+
         if category is not None:
             return Post.objects.filter(
                 category=category).order_by('-created_on')
+
         return Post.objects.all().order_by('-created_on')

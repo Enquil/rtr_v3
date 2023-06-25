@@ -4,9 +4,7 @@
 {% block content %}
     <div class="container-fluid mt-3">
 
-        {% comment %}
-            title
-        {% endcomment %}
+        <!-- post.title -->
         <div class="row text-center">
             <div class="col-12 text-center">
                 <hr class="w-50 post-title-space">
@@ -15,9 +13,7 @@
             </div>
         </div>
 
-        {% comment %}
-            image
-        {% endcomment %}
+        <!-- post.image -->
         <div class="row mb-3">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6
                         offset-sm-1 offset-md-2 offset-lg-3">
@@ -28,29 +24,15 @@
             </div>
         </div>
 
-        {% comment %} 
-        <div class="row">
-            <div class="col-12 col-sm-10 col-md-8 col-lg-6
-                        offset-sm-1 offset-md-2 offset-lg-3 mb-5">
-                {{ post.author }}
-            </div>
-        </div> 
-        {% endcomment %}
-
-        {% comment %}
-            content
-        {% endcomment %}
+        <!-- post.content -->
         <div class="row">
             <div class="col-12 col-md-10 col-lg-8
-                        offset-md-1 offset-lg-2">
+                        offset-md-1 offset-lg-2 mb-4">
                 {{ post.content|safe }}
             </div>
         </div>
 
-        {% comment %}
-            likes,
-            like button/form
-        {% endcomment %}
+        <!-- post.likes.count and like form -->
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 col-xl-4
                         offset-sm-2 offset-md-3 offset-xl-4 mb-2">

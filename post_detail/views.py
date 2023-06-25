@@ -74,13 +74,12 @@ class PostDetail(View):
                 parent_id = int(request.POST.get('parent_id'))
 
             '''
-                if parent_id exists in the form,
-                stores the comment from the comments queryset,
-                with corresponding id as parent_obj
+            if parent_id exists in the form,
+            stores the comment with the captured id as parent_obj
             '''
             if parent_id:
                 parent_obj = comments.get(id=parent_id)
-                # if parent object exists
+                # if parent object (comment) exists in database
                 if parent_obj:
                     # create reply comment object
                     reply_comment = comment_form.save(commit=False)
@@ -107,7 +106,7 @@ class PostDetail(View):
                 "post": post,
                 "comments": comments,
                 "comment_form": comment_form,
-                "liked": liked
+                "liked": liked,
             },
         )
 
@@ -116,11 +115,14 @@ class PostLike(View):
 
     def post(self, request, slug):
 
-        post = get_object_or_404(Post, slug=slug)
+        if request.user.is_anonymous is False:
+            post = get_object_or_404(Post, slug=slug)
 
-        if post.likes.filter(id=request.user.id).exists():
-            post.likes.remove(request.user)
+            if post.likes.filter(id=request.user.id).exists():
+                post.likes.remove(request.user)
+            else:
+                post.likes.add(request.user)
         else:
-            post.likes.add(request.user)
+            messages.error(request, f'Only logged in members can do that')
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
