@@ -3,55 +3,91 @@
 
 {% block content %}
     <div class="container-fluid p-0">
+
+        <!-- Upper page navigation -->
+        {% if is_paginated %}
+            <nav aria-label="Upper page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    {% if page_obj.has_previous %}
+                    <li>
+                        <a href="?page={{ page_obj.previous_page_number }}{% if category != None %}&category={{ category }}{% endif %}" 
+                           class="page-link text-dark me-4">
+                            &laquo; PREV PAGE
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <li>
+                            <a href="?page={{ page_obj.next_page_number }}{% if category != None %}&category={{ category }}{% endif %}" 
+                               class="page-link text-dark ms-4"> 
+                                NEXT PAGE &raquo;
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
         <div class="row g-0">
             <div class="col-md-8 col-lg-6 offset-md-2 offset-lg-3 text-center">
 
                 <!-- List of posts  -->
                 {% for post in post_list %}
-                        <div class="card mt-5 card-border mb-2">
-                            <a href="{% url 'post_detail' post.slug %}" class="post-detail-link d-block my-5 text-dark text-decoration-none">
+                    <div class="card card-border {% if is_paginated and forloop.first %} 
+                                                    mt-2 
+                                                 {% else %} 
+                                                    mt-5 
+                                                {% endif %} 
+                                                {% if forloop.last and not is_paginated %} 
+                                                    mb-5 
+                                                {% endif %}">
+                        <a href="{% url 'post_detail' post.slug %}" 
+                            class="post-detail-link d-block my-5 text-dark text-decoration-none">
 
-                                <h6>{{ post.category.name }} | By: {{ post.author | safe }}
-                                    <span class="post-date"> | {{ post.created_on }}</span>
-                                </h6>
+                            <h6>{{ post.category.name }} | By: {{ post.author | safe }}
+                                <span class="post-date"> | {{ post.created_on }}</span>
+                            </h6>
 
-                                <hr class="w-75" style="margin-left: 12.5%;">
-                                <h2 class="card-title">
-                                    {{ post.title }}
-                                </h2>
-                                <hr class="w-75" style="margin-left: 12.5%;">
+                            <hr class="w-75" style="margin-left: 12.5%;">
+                            <h2 class="card-title">
+                                {{ post.title }}
+                            </h2>
+                            <hr class="w-75" style="margin-left: 12.5%;">
 
-                                {% if "placeholder" not in post.featured_image.url %}
-                                    <img class="m-2 mx-auto d-block"
-                                        style="max-width: 300px; height: auto;"
-                                        src="{{ post.featured_image.url }}">
-                                {% endif %}
+                            {% if "placeholder" not in post.featured_image.url %}
+                                <img class="m-2 mx-auto d-block"
+                                    style="max-width: 300px; height: auto;"
+                                    src="{{ post.featured_image.url }}">
+                            {% endif %}
 
-                                {% if post.excerpt %}
-                                    <p class="mt-4 mx-2">{{ post.excerpt }}</p>
-                                {% endif %}
+                            {% if post.excerpt %}
+                                <p class="mt-4 mx-2">{{ post.excerpt }}</p>
+                            {% endif %}
 
-                                <h5>
-                                    <span><i class="fa-regular fa-comments"></i> {{ post.comments.count }}</span> |
-                                    <span><i class="fa-regular fa-thumbs-up"></i> {{ post.likes.count }}</span>
-                                </h5>
-                            </a>
-                        </div>
+                            <h5>
+                                <span><i class="fa-regular fa-comments"></i> {{ post.comments.count }}</span> |
+                                <span><i class="fa-regular fa-thumbs-up"></i> {{ post.likes.count }}</span>
+                            </h5>
+                        </a>
+                    </div>
                 {% endfor %}
+
+                <!-- Lower page navigation -->
                 {% if is_paginated %}
-                    <nav aria-label="Lower page navigation">
-                        <ul class="pagination justify-content-center">
+                    <nav aria-label="Upper page navigation">
+                        <ul class="pagination justify-content-center mt-4 mb-4">
                             {% if page_obj.has_previous %}
-                            <li><a href="?page={{ page_obj.previous_page_number }}{% if category != None %}&category={{ category }}{% endif %}" 
-                                   class="page-link">
-                                   &laquo; PREV
+                            <li>
+                                <a href="?page={{ page_obj.previous_page_number }}{% if category != None %}&category={{ category }}{% endif %}" 
+                                   class="page-link text-dark me-4">
+                                    &laquo; PREV PAGE
                                 </a>
                             </li>
                             {% endif %}
                             {% if page_obj.has_next %}
-                                <li><a href="?page={{ page_obj.next_page_number }}{% if category != None %}&category={{ category }}{% endif %}" 
-                                       class="page-link"> 
-                                        NEXT &raquo;
+                                <li>
+                                    <a href="?page={{ page_obj.next_page_number }}{% if category != None %}&category={{ category }}{% endif %}" 
+                                       class="page-link text-dark ms-4"> 
+                                        NEXT PAGE &raquo;
                                     </a>
                                 </li>
                             {% endif %}
