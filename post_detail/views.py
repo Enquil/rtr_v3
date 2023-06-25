@@ -64,7 +64,7 @@ class PostDetail(View):
 
         if comment_form.is_valid():
 
-            comment_form.instance.name = request.user.username
+            comment_form.instance.author = request.user.username
             parent_obj = None
             parent_id = None
 
