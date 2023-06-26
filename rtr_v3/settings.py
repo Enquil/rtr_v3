@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'post_detail',
     'create_post',
     'profiles',
+    'edit_post',
 ]
 
 MIDDLEWARE = [
