@@ -18,7 +18,7 @@ class Category(models.Model):
     name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
-        return self.friendly_name
+        return self.name
 
     def get_friendly_name(self):
         return self.friendly_name
@@ -35,8 +35,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     '''
-    - Basic post class sourced from CodeInstitute django tutorial
-      with some minor modifications:
+    Basic post class sourced from CodeInstitute with minor modifications:
     - extended slug that is set blank to allow title to match other posts
     - "status" is 1: "Published", as default
     '''
@@ -90,11 +89,10 @@ class Post(models.Model):
 
 class Comment(models.Model):
     '''
-    - Basic comment class sourced from CodeInstitute
-      with some minor modifications:
-        - Parents and children to be able to use comments as a "conversation"
-        - "Approved" field is set to True by default
-        - Added like functionality
+    - Basic comment class sourced from CodeInstitute minor modifications:
+    - Parents and children to be able to use comments as a "conversation"
+    - "Approved" field is set to True by default
+    - Added like functionality
     '''
 
     post = models.ForeignKey(
@@ -124,14 +122,14 @@ class Comment(models.Model):
 
         ordering = ['created_on']
 
+    # Returns list of children if any exists
     @property
     def children(self):
-
         return Comment.objects.filter(parent=self).reverse()
 
+    # Returns True if comment does not have a parent
     @property
     def is_top_level(self):
-
         if self.parent is None:
             return True
         return False
