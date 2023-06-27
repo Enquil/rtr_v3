@@ -14,19 +14,22 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    friendly_name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.friendly_name
 
     def get_friendly_name(self):
         return self.friendly_name
 
     def save(self, *args, **kwargs):
-        if self.name is None:
-            lower_name = get_friendly_name.lower()
-            self.name = lower_name.replace(" ", "_", 10)
+        self.name = None
+        lower_name_list = self.friendly_name.lower().split()
+        clean_list = [
+            x for x in lower_name_list if x != 'and'
+        ]
+        self.name = '_'.join(clean_list)
         return super().save(*args, **kwargs)
 
 
