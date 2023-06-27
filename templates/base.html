@@ -53,21 +53,17 @@
 
     <body class="h-100 w-100 d-flex flex-column bg-alice">
 
-        {% comment %}
-          Top Nav
-        {% endcomment %}
+        <!-- Top Nav -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-purple">
-            {% comment %}
-              Brand
-            {% endcomment %}
+
+            <!-- Brand -->
             <a class="navbar-brand ms-3" href="{% url 'index' %}">
                 <span class="fs-3 text-white">R</span>
                 <h2 class="d-inline text-white">T</h2>
                 <span class="fs-3 text-white me-5">R</span>
             </a>
-            {% comment %}
-              Navbar toggler for smaller screens
-            {% endcomment %}
+
+            <!-- Navbar toggler for smaller screens -->
             <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" 
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -76,16 +72,17 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
               <ul class="navbar-nav ms-auto me-5">
-                {% comment %}
-                  Category dropdown menu
-                {% endcomment %}
+
+                <!-- Category dropdown menu -->
                 <li class="nav-item dropdown">
+
                   <a class="nav-link dropdown-toggle ms-2 me-2 text-white fs-4" 
-                     href="#" 
-                     id="categories-dropdown" data-bs-toggle="dropdown" 
+                     href="#"
+                     id="categories-dropdown" data-bs-toggle="dropdown"
                      aria-haspopup="true" aria-expanded="false">
                     Categories
                   </a>
+
                   <div class="dropdown-menu p-0 border-0 m-0 bg-purple"
                        aria-labelledby="categories-dropdown">
                     <!--
@@ -93,20 +90,22 @@
                       hidden input uses corresponding id to filter the queryset
                     -->
                     {% for category in categories %}
-                      <a class="dropdown-item bg-purple text-white" href="{% url 'index' %}?category={{ category.id }}">{{ category }}</a>
+                      <a class="dropdown-item bg-purple text-white" 
+                         href="{% url 'index' %}?category={{ category.id }}">
+                         {{ category }}
+                      </a>
                     {% endfor %}
                   </div>
                 </li>
 
                 <li class="nav-item active">
                   <a class="nav-link ms-2 text-white fs-4 me-2" href="#">
-                    Home
+                    
                   </a>
                 </li>
                 <div class="vr"></div>
-                {% comment %}
-                  if statement handles what user sees on the navbar depending if authenticated or not
-                {% endcomment %}
+
+                <!-- if statement handles what user sees on the navbar depending if authenticated or not -->
                 {% if user.is_authenticated %}
 
                   <li class="nav-item">
@@ -117,9 +116,7 @@
                     </a>
                   </li>
 
-                  {% comment %}
-                    user actions dropdown menu
-                  {% endcomment %}
+                  <!-- user actions dropdown menu -->
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle ms-2 text-white fs-4" href="#"
                        id="userDropDown" data-bs-toggle="dropdown" 
@@ -140,9 +137,7 @@
                     </div>
                   </li>
 
-                {% comment %}
-                  When user is not logged in
-                {% endcomment %}
+                <!-- When user is not logged in -->
                 {% else %}
 
                   <li class="nav-item ml-auto">
@@ -163,9 +158,7 @@
             </div>
           </nav>
 
-        {% comment %}
-          Message Container
-        {% endcomment %}
+        <!-- Message Container -->
         <div class="container-fluid message-container">
             <div class="row">
                 <div class="col-md-6 offset-md-3 text-center">
@@ -181,23 +174,17 @@
             </div>
         </div>
 
-        {% comment %}
-          Individual Template Content
-        {% endcomment %}
+        <!-- Individual Template Content -->
         {% block content %}
         {% endblock content %}
 
-        {% comment %}
-          Footer
-        {% endcomment %}
+        <!-- Footer -->
         <footer class="mt-auto w-100 bg-purple">
           Footer
         </footer>
     </body>
 
-    {% comment %}
-      Message Timer
-    {% endcomment %}
+    <!-- Message Timer -->
     <script>
       setTimeout(function(){var e=document.getElementById("msg");let t=new bootstrap.Alert(e);t.close()},4e3);
     </script>
