@@ -28,7 +28,7 @@ SECRET_KEY = '+$jxfb@&3od^!!vzfn#^=(_ebbggx%m5jh_1+h3d5l3vx(ln6d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-enquil-rtrv3-dthx7akst30.ws-eu100.gitpod.io']
+ALLOWED_HOSTS = ['8000-enquil-rtrv3-dthx7akst30.ws-eu101.gitpod.io']
 
 
 # Application definition

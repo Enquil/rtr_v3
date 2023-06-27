@@ -15,7 +15,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=254)
-    programatic = models.CharField(max_length=254, null=True, blank=True)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -24,10 +24,9 @@ class Category(models.Model):
         return self.friendly_name
 
     def save(self, *args, **kwargs):
-        if self.programatic is None:
-            self.programatic = None
-            lower_name = self.name.lower()
-            self.programatic = lower_name.replace(" ", "_", 10)
+        if self.name is None:
+            lower_name = get_friendly_name.lower()
+            self.name = lower_name.replace(" ", "_", 10)
         return super().save(*args, **kwargs)
 
 
@@ -35,8 +34,8 @@ class Post(models.Model):
     '''
     - Basic post class sourced from CodeInstitute django tutorial
       with some minor modifications:
-        - extended slug that is set blank to allow title to match other posts
-        - "status" is 1: "Published", as default
+    - extended slug that is set blank to allow title to match other posts
+    - "status" is 1: "Published", as default
     '''
 
     title = models.CharField(max_length=200, unique=True)

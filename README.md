@@ -6,6 +6,12 @@
 
 ## Planning
 
+### Post
+
+### Comment
+
+### UserProfile
+
 ## Models
 
 ## Design
