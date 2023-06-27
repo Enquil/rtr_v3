@@ -31,7 +31,6 @@ class CreatePost(View):
             if post_form.is_valid():
 
                 user = User.objects.get(id=request.user.id)
-                post_form.instance.email = request.user.email
                 post_form.instance.author = request.user
                 post = post_form.save(commit=False)
                 post.save()
