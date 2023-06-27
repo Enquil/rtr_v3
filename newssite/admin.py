@@ -51,9 +51,11 @@ class CommentAdmin(admin.ModelAdmin):
         'disable_selected_comments'
     ]
 
+    # Sets approved to False and prevents comment from showing in post
     def disable_selected_comments(self, request, queryset):
         queryset.update(approved=False)
 
+    # Sets approved to True
     def approve_selected_comments(self, request, queryset):
         queryset.update(approved=True)
 
