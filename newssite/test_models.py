@@ -72,7 +72,7 @@ class PostModelTest(TestCase):
         test_post = Post.objects.get(id=1)
         test_post2 = Post.objects.get(id=2)
         self.assertEqual(test_post.author.username, 'alan')
-        self.assertEqual(test_post.author.username, 'ada')
+        self.assertEqual(test_post2.author.username, 'ada')
 
     def test_post_slug(self):
         '''
@@ -94,7 +94,7 @@ class PostModelTest(TestCase):
         self.assertEqual(test_post2.status, 1)
 
 
-class CommentModelTest(Testcase):
+class CommentModelTest(TestCase):
 
     def setUp(self):
 
@@ -117,7 +117,6 @@ class CommentModelTest(Testcase):
             username='ada',
             is_superuser=False,
             password='difference',
-            email='a.lovelace@realmail.com'
         )
 
         post = Post.objects.create(
@@ -141,5 +140,17 @@ class CommentModelTest(Testcase):
         )
 
         comment2 = Comment.objects.create(
-
+            post=post2,
+            author=user,
+            body='This looks amazing!'
         )
+
+    def test_comment_email(self):
+        '''
+        Checks if comment.email returns correctly
+        '''
+        test_comment = Comment.objects.get(id=1)
+        print(test_comment)
+        test_comment2 = Comment.objects.get(id=2)
+
+        self.assertEqual(test_comment.email, 'a.turing@realmail.com')
