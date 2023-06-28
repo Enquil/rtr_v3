@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 class CategoryModelTest(TestCase):
+
     def setUp(self):
         category_model = Category.objects.create(
             friendly_name='General',
@@ -14,7 +15,9 @@ class CategoryModelTest(TestCase):
 
     def test_category_names(self):
         category_a = Category.objects.get(friendly_name='General')
-        category_b = Category.objects.get(friendly_name='Art and Entertainment')
+        category_b = Category.objects.get(
+            friendly_name='Art and Entertainment'
+        )
         self.assertEqual(category_a.name, 'general')
         self.assertEqual(category_b.name, 'art_entertainment')
 
@@ -44,3 +47,4 @@ class PostModelTest(TestCase):
     def test_post_user(self):
         test_post = Post.objects.get(id=1)
         self.assertEqual(test_post.author.username, 'alan')
+        self.assertEqual(test_post.slug)
