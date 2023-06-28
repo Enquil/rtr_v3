@@ -27,7 +27,6 @@ class EditPost(UpdateView):
         return post
 
     def form_valid(self, form):
-        print(super().form_valid(form))
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         return super().form_valid(form)
