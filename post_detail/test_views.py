@@ -12,6 +12,7 @@ class TestPostDetailView(TestCase):
 
     # Test templates when getting the PostDetail view
     def test_get_post_detail_templates(self):
+
         category_model = Category.objects.create(
             friendly_name='General',
             name='general'
