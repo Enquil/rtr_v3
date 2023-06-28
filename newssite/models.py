@@ -81,7 +81,7 @@ class Post(models.Model):
                     self.title +
                     '-' + str(
                         self.author) + str(
-                            random.randint(0, 9999999)))
+                            self.author.id))
             )
 
         return super().save(*args, **kwargs)

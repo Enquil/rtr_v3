@@ -47,4 +47,10 @@ class PostModelTest(TestCase):
     def test_post_user(self):
         test_post = Post.objects.get(id=1)
         self.assertEqual(test_post.author.username, 'alan')
-        self.assertEqual(test_post.slug)
+    
+    def test_post_slug
+
+
+class CommentModelTest(Testcase):
+
+    def setUp(self):
