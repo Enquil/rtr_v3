@@ -24,11 +24,21 @@ class Category(models.Model):
         return self.friendly_name
 
     def save(self, *args, **kwargs):
+        '''
+        Save method auto-generates the 'programatic' category name
+        Example:
+        - Art and Entertainment turns into programatic: art_entertainment
+        '''
+
+        # Sets category.name to none
         self.name = None
+        # turns all words lowercase in friendly_name and split to list
         lower_name_list = self.friendly_name.lower().split()
+        # Makes new list without 'and', if friendly_name contained any
         clean_list = [
             x for x in lower_name_list if x != 'and'
         ]
+        # Join the words in clean_list with a '_'
         self.name = '_'.join(clean_list)
         return super().save(*args, **kwargs)
 
@@ -79,9 +89,7 @@ class Post(models.Model):
             self.slug = (
                 slugify(
                     self.title +
-                    '-' + str(
-                        self.author) + str(
-                            self.author.id))
+                    '-' + str(self.author.username) + str(self.author.id))
             )
 
         return super().save(*args, **kwargs)
@@ -89,7 +97,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     '''
-    - Basic comment class sourced from CodeInstitute minor modifications:
+    Basic comment class sourced from CodeInstitute with minor modifications:
     - Parents and children to be able to use comments as a "conversation"
     - "Approved" field is set to True by default
     - Added like functionality
@@ -119,21 +127,23 @@ class Comment(models.Model):
     )
 
     class Meta:
+        ordering = ['-created_on']
 
-        ordering = ['created_on']
-
-    # Returns list of children if any exists
     @property
     def children(self):
+        '''
+        Returns list of comment children, if any exists
+        '''
         return Comment.objects.filter(parent=self).reverse()
 
-    # Returns True if comment does not have a parent
     @property
     def is_top_level(self):
+        '''
+        Returns True if comment does not have a parent
+        '''
         if self.parent is None:
             return True
         return False
 
     def __str__(self):
-
         return f"Comment {self.body} by {self.name}"
