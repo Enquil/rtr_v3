@@ -109,7 +109,7 @@ class Comment(models.Model):
         related_name="comments"
     )
     author = models.CharField(max_length=80)
-    email = models.EmailField()
+    email = models.EmailField(blank=True, null=True)
     body = models.TextField(max_length=300)
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
@@ -147,3 +147,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.author}"
+
+    def save(self, *args, **kwargs):
+        if self.author.email is not None:
+            self.email = self.author.email
+        return super().save(*args, **kwargs)

@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 
 
 class CategoryModelTest(TestCase):
+    '''
+    Test class for model: Category
+    '''
 
     def setUp(self):
         category_model = Category.objects.create(
@@ -145,12 +148,48 @@ class CommentModelTest(TestCase):
             body='This looks amazing!'
         )
 
+        comment3 = Comment.objects.create(
+            post=post2,
+            author=user2,
+            parent=comment2,
+            body='Thanks!'
+        )
+
     def test_comment_email(self):
         '''
-        Checks if comment.email returns correctly
+        Checks if comment.email returns correct value through save()
+        (If email is set @ User)
+        Only the comment posted by alan should contain one
         '''
         test_comment = Comment.objects.get(id=1)
-        print(test_comment)
         test_comment2 = Comment.objects.get(id=2)
 
-        self.assertEqual(test_comment.email, 'a.turing@realmail.com')
+        self.assertEqual(test_comment.email, '')
+        self.assertEqual(test_comment2.email, 'a.turing@realmail.com')
+
+    def test_is_top_level_comment(self):
+        '''
+        Checks the is_top_level property of Comment model
+        test_comment3 should return False since it is child of test_comment2
+        '''
+        test_comment = Comment.objects.get(id=1)
+        test_comment2 = Comment.objects.get(id=2)
+        test_comment3 = Comment.objects.get(id=3)
+
+        self.assertTrue(test_comment.is_top_level)
+        self.assertTrue(test_comment2.is_top_level)
+        self.assertFalse(test_comment3.is_top_level)
+
+    def test_children(self):
+        '''
+        Checks if .children returns correctly by using
+        .count() on the children <Queryset> for each comment
+        - Only comment2 should have a child
+        '''
+        test_comment = Comment.objects.get(id=1)
+        test_comment2 = Comment.objects.get(id=2)
+        test_comment3 = Comment.objects.get(id=3)
+
+        self.assertEqual(test_comment.children.count(), 0)
+        self.assertEqual(test_comment2.children.count(), 1)
+        self.assertEqual(test_comment3.children.count(), 0)
