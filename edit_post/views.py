@@ -10,6 +10,7 @@ from django.http import (HttpResponse,
 from create_post.forms import PostForm
 from django.views.generic import UpdateView
 from django.http import Http404
+from django.core.exceptions import PermissionDenied
 
 
 class EditPost(UpdateView):
@@ -22,10 +23,11 @@ class EditPost(UpdateView):
     def get_object(self, *args, **kwargs):
         post = super(EditPost, self).get_object(*args, **kwargs)
         if not post.author == self.request.user:
-            raise Http404
+            raise PermissionDenied
         return post
 
     def form_valid(self, form):
+        print(super().form_valid(form))
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         return super().form_valid(form)
