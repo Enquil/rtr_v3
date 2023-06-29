@@ -9,22 +9,35 @@ class CategoryModelTest(TestCase):
     '''
 
     def setUp(self):
+
         category_model = Category.objects.create(
             friendly_name='General',
         )
-        category_model = Category.objects.create(
+
+        category_model2 = Category.objects.create(
             friendly_name='Art and Entertainment',
         )
 
+        category_model3 = Category.objects.create(
+            friendly_name='Andy the Bandwagon',
+        )
+
     def test_category_names(self):
+
         category_a = Category.objects.get(
-            friendly_name='General'
+            id=1
         )
         category_b = Category.objects.get(
-            friendly_name='Art and Entertainment'
+            id=2
         )
+        category_c = Category.objects.get(
+            id=3
+        )
+
+        # Check that names saves as expected from custom save() method
         self.assertEqual(category_a.name, 'general')
         self.assertEqual(category_b.name, 'art_entertainment')
+        self.assertEqual(category_c.name, 'andy_the_bandwagon')
 
 
 class PostModelTest(TestCase):
@@ -164,6 +177,7 @@ class CommentModelTest(TestCase):
         test_comment = Comment.objects.get(id=1)
         test_comment2 = Comment.objects.get(id=2)
 
+        # Checks both user models
         self.assertEqual(test_comment.email, '')
         self.assertEqual(test_comment2.email, 'a.turing@realmail.com')
 
@@ -176,13 +190,14 @@ class CommentModelTest(TestCase):
         test_comment2 = Comment.objects.get(id=2)
         test_comment3 = Comment.objects.get(id=3)
 
+        # test_comment3 should return False (child of comment2)
         self.assertTrue(test_comment.is_top_level)
         self.assertTrue(test_comment2.is_top_level)
         self.assertFalse(test_comment3.is_top_level)
 
     def test_children(self):
         '''
-        Checks if .children returns correctly by using
+        Checks if Comment.children returns correctly by using
         .count() on the children <Queryset> for each comment
         - Only comment2 should have a child
         '''
@@ -190,6 +205,9 @@ class CommentModelTest(TestCase):
         test_comment2 = Comment.objects.get(id=2)
         test_comment3 = Comment.objects.get(id=3)
 
-        self.assertEqual(test_comment.children.count(), 0)
-        self.assertEqual(test_comment2.children.count(), 1)
-        self.assertEqual(test_comment3.children.count(), 0)
+        # Only test_comment should return True
+        self.assertFalse(test_comment.children)
+        self.assertTrue(test_comment2.children)
+        self.assertFalse(test_comment3.children)
+        # Checks if the comment body actually matches the supposed child
+        self.assertEqual(test_comment2.children[0].body, 'Thanks!')

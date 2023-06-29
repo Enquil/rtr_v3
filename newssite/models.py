@@ -51,14 +51,19 @@ class Post(models.Model):
     '''
 
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True, blank=True)
+    slug = models.SlugField(
+        max_length=200,
+        unique=True,
+        null=True,
+        blank=True
+    )
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='posts'
     )
-    updated_on_date = models.DateTimeField(auto_now=True)
-    excerpt = models.TextField(max_length=300, blank=True)
+    is_edited = models.BooleanField(default=False)
+    excerpt = models.TextField(max_length=300, null=True, blank=True)
     content = models.TextField()
     category = models.ForeignKey(
         Category,
