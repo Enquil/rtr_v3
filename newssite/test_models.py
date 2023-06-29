@@ -39,6 +39,19 @@ class CategoryModelTest(TestCase):
         self.assertEqual(category_b.name, 'art_entertainment')
         self.assertEqual(category_c.name, 'andy_the_bandwagon')
 
+    def test_post_friendly_name(self):
+        '''
+        Tests if get_friendly_name(category)
+        returns correctly
+        '''
+        category = Category.objects.get(
+            id=2
+        )
+        self.assertEqual(
+            Category.get_friendly_name(category),
+            category.friendly_name
+        )
+
 
 class PostModelTest(TestCase):
     '''
@@ -173,6 +186,18 @@ class CommentModelTest(TestCase):
             author=user2,
             parent=comment2,
             body='Thanks!'
+        )
+
+    def test_comment_str(self):
+        '''
+        Tests __str__ method of Comment model
+        '''
+
+        comment = Comment.objects.get(id=1)
+
+        self.assertEqual(
+            str(comment),
+            f'Comment {comment.body} by {comment.author}'
         )
 
     def test_comment_email(self):
