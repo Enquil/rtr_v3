@@ -72,7 +72,6 @@ class TestPostDetailView(TestCase):
         user = User.objects.get(id=1)
         post = Post.objects.get(id=1)
         response = self.client.post(reverse('post_detail', args=(post.slug,)))
-        print(response)
 
 
 class TestPostLikeView(TestCase):
