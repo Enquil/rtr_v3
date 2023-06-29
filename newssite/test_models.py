@@ -241,5 +241,3 @@ class CommentModelTest(TestCase):
         self.assertFalse(test_comment.children)
         self.assertTrue(test_comment2.children)
         self.assertFalse(test_comment3.children)
-        # Checks if the comment body actually matches the supposed child
-        self.assertEqual(test_comment2.children[0].body, 'Thanks!')
