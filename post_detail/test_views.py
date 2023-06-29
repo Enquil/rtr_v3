@@ -51,7 +51,7 @@ class TestPostDetailView(TestCase):
             body='This looks amazing!'
         )
 
-    def test_get_post_detail_GET(self):
+    def test_get_post_detail(self):
         '''
         Tests statuscode of PostDetailView
         and that correct template is being used
