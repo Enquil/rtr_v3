@@ -6,13 +6,16 @@ from django.shortcuts import (render, get_object_or_404,
 from django.http import (HttpResponse,
                          HttpResponseRedirect)
 import requests
+from .views import PostDetail, PostLike
 
 
 class TestPostDetailView(TestCase):
 
     def setUp(self):
 
-        category_model = Category.objects.create(
+        self.factory = RequestFactory()
+
+        category = Category.objects.create(
             friendly_name='General',
         )
 
@@ -25,30 +28,70 @@ class TestPostDetailView(TestCase):
         user2 = User.objects.create(
             username='ada',
             is_superuser=False,
-            password='difference'
+            password='difference',
         )
 
         post = Post.objects.create(
             title='how to crack codes',
             author=user,
             content="so easy",
-            category=category_model,
+            category=category,
         )
 
-        post2 = Post.objects.create(
-            title='Calculating machines',
+        comment = Comment.objects.create(
+            post=post,
             author=user2,
-            content="sometimes, 1 is 0",
-            category=category_model,
+            body='Great job Alan!'
         )
 
-    # Test templates when getting the PostDetail view
-    def test_get_post_detail_template(self):
+        comment2 = Comment.objects.create(
+            post=post,
+            parent=comment,
+            author=user,
+            body='This looks amazing!'
+        )
 
-        category_model = Category.objects.get(id=1)
-        user = User.objects.get(id=1)
+    def test_get_post_detail_GET(self):
+        '''
+        Tests statuscode of PostDetailView
+        and that correct template is being used
+        when rendering post_detail view
+        '''
+
         post = Post.objects.get(id=1)
-        post.likes.set(('1'))
+
         response = self.client.get(reverse('post_detail', args=(post.slug,)))
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'post_detail/post_detail.html')
+
+    def test_get_post_detail_add_comment(self):
+        '''
+        Tests if only top-level comments are retrieved
+        '''
+        user = User.objects.get(id=1)
+        post = Post.objects.get(id=1)
+        response = self.client.post(reverse('post_detail', args=(post.slug,)))
+        print(response)
+
+
+class TestPostLikeView(TestCase):
+
+    def setUp(self):
+
+        category = Category.objects.create(
+            friendly_name='General',
+        )
+
+        user = User.objects.create(
+            username='alan',
+            is_superuser=True,
+            password='enigma'
+        )
+
+        post = Post.objects.create(
+            title='how to crack codes',
+            author=user,
+            content="so easy",
+            category=category,
+        )

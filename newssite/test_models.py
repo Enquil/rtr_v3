@@ -170,20 +170,20 @@ class CommentModelTest(TestCase):
 
     def test_comment_email(self):
         '''
-        Checks if comment.email returns correct value through save()
+        Tests if comment.email returns correct value through save()
         (If email is set @ User)
         Only the comment posted by alan should contain one
         '''
         test_comment = Comment.objects.get(id=1)
         test_comment2 = Comment.objects.get(id=2)
 
-        # Checks both user models
+        # Tests both user models
         self.assertEqual(test_comment.email, '')
         self.assertEqual(test_comment2.email, 'a.turing@realmail.com')
 
     def test_is_top_level_comment(self):
         '''
-        Checks the is_top_level property of Comment model
+        Tests the is_top_level property of Comment model
         test_comment3 should return False since it is child of test_comment2
         '''
         test_comment = Comment.objects.get(id=1)
