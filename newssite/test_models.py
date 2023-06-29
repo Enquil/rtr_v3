@@ -80,6 +80,13 @@ class PostModelTest(TestCase):
             category=category_model,
         )
 
+    def test_post_str(self):
+        '''
+        Tests if __str__ method returns post.title
+        '''
+        post = Post.objects.get(id=1)
+        self.assertEqual(str(post), post.title)
+
     def test_post_user(self):
         '''
         Checks post.username matches the User model attached to the post
