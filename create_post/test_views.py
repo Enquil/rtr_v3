@@ -21,13 +21,14 @@ class TestCreatePostView(TestCase):
             password='enigma'
         )
 
-    def test_get_post_detail_logged_in(self):
+    def test_get_create_post_logged_in(self):
         '''
         Tests statuscode of CreatePost View
         and that correct template is being used
         when rendering CreatePost View
         '''
+        user = User.objects.get(id=1)
         response = self.client.get('/create_post/')
-
+        self.request.user = user
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'create_post/create_post.html')
