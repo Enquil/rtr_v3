@@ -53,7 +53,7 @@ class TestEditPostView(TestCase):
         Tests that correct template is being used
         when rendering EditPost View
         '''
-        user = User.objects.get(id=1)
+
         post = Post.objects.get(id=1)
         response = self.client.get(f'/edit_post/{post.slug}')
 

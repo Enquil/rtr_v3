@@ -35,3 +35,18 @@ class TestCreatePostView(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'create_post/create_post.html')
+
+    def test_get_create_post_not_logged_in(self):
+        '''
+        Tests statuscode of CreatePost View
+        and that correct template is being used
+        when rendering CreatePost View
+        '''
+
+        response = self.client.get('/create_post/')
+
+        self.client.force_login(User.objects.get(id=1))
+        response = self.client.get('/create_post/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'create_post/create_post.html')
