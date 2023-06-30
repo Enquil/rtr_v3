@@ -98,7 +98,7 @@
                     {% for category in categories %}
                       <a class="dropdown-item bg-purple text-white" 
                          href="{% url 'index' %}?category={{ category.id }}">
-                         {{ category }}
+                         {{ category.get_friendly_name }}
                       </a>
                     {% endfor %}
                   </div>
