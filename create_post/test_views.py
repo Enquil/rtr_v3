@@ -4,7 +4,8 @@ from django.contrib.auth.models import User, AnonymousUser
 from django.shortcuts import (render, get_object_or_404,
                               redirect, reverse)
 from django.http import (HttpResponse,
-                         HttpResponseRedirect)
+                         HttpResponseRedirect,
+                         HttpRequest)
 import requests
 from .views import CreatePost
 
@@ -56,3 +57,15 @@ class TestCreatePostView(TestCase):
             response,
             '/accounts/login/?next=/create_post/'
         )
+
+    # def test_post_create_post(self):
+
+    #     request = HttpRequest()
+    #     self.client.force_login(User.objects.get(id=1))
+    #     data = {'csrfmiddlewaretoken': ['bspcgV3YfFtSwpkXv253ZyFBTdvjYYhvnOpxAndgpasWiKggLFNZFillvwV6Jq4T'], "title": ["test_post"], "category": ["1"], "excerpt": [""], "content": ["Ipsum Lorem"]}
+    #     response = self.client.post(
+    #         '/create_post/',
+    #         data=data,
+    #     )
+
+    #     self.assertTrue(form.is_valid())

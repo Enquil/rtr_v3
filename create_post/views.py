@@ -27,7 +27,6 @@ class CreatePost(View):
         if request.method == "POST":
 
             post_form = PostForm(request.POST, request.FILES)
-
             if post_form.is_valid():
 
                 user = User.objects.get(id=request.user.id)
