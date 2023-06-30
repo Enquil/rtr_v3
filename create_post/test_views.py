@@ -27,8 +27,11 @@ class TestCreatePostView(TestCase):
         and that correct template is being used
         when rendering CreatePost View
         '''
-        user = User.objects.get(id=1)
+
         response = self.client.get('/create_post/')
-        self.request.user = user
+
+        self.client.force_login(User.objects.get(id=1))
+        response = self.client.get('/create_post/')
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'create_post/create_post.html')

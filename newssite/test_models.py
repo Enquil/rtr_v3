@@ -42,13 +42,14 @@ class CategoryModelTest(TestCase):
     def test_post_friendly_name(self):
         '''
         Tests if get_friendly_name(category)
-        returns correctly
+        gets properly
         '''
         category = Category.objects.get(
             id=2
         )
         self.assertEqual(
-            Category.get_friendly_name(category),
+            Category.get_friendly_name(Category.objects.get(
+                id=2)),
             category.friendly_name
         )
 
