@@ -74,23 +74,29 @@ class TestPostDetailView(TestCase):
         response = self.client.post(reverse('post_detail', args=(post.slug,)))
 
 
-class TestPostLikeView(TestCase):
+class TestPostComment(TestCase):
 
     def setUp(self):
-
-        category = Category.objects.create(
-            friendly_name='General',
-        )
 
         user = User.objects.create(
             username='alan',
             is_superuser=True,
-            password='enigma'
+            password='enigma',
         )
 
         post = Post.objects.create(
-            title='how to crack codes',
-            author=user,
-            content="so easy",
-            category=category,
+            title="Test post", author=user, slug="test",
+            excerpt="Test excerpt", content="Test content", status=1
         )
+
+    def test_comment(self):
+        user = User.objects.get(id=1)
+        self.client.force_login(User.objects.get(id=1))
+        post = Post.objects.get(id=1)
+        response = self.client.post(reverse('post_detail', args=[post.slug]), {
+            'author': user,
+            'post': post,
+            'body': 'This is a test comment'
+        })
+        comment.save()
+        print(post.comments)
