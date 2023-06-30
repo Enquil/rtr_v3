@@ -98,5 +98,5 @@ class TestPostComment(TestCase):
             'post': post,
             'body': 'This is a test comment'
         })
-        comment.save()
+        get_response = self.client.post(reverse('post_detail', args=[post.slug]))
         print(post.comments)
